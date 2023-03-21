@@ -1,0 +1,63 @@
+/* Set default font family and size */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+  }
+  
+  /* Style the ColorRadioButtons component */
+  .ColorRadioButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  /* Style the Recipe Name and Description */
+  div:nth-of-type(2),
+  div:nth-of-type(4) {
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  /* Style the Recipe Image */
+  img {
+    display: block;
+    margin: 10px auto;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Style the Recipe Serves and Preparing Time */
+  div:nth-of-type(7),
+  div:nth-of-type(9) {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  /* Style the Recipe Difficulty */
+  div:nth-of-type(10) {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  /* Style the DisplayTags and DisplayCategories components */
+  .DisplayTags,
+  .DisplayCategories {
+    margin-top: 10px;
+  }
+  
+  /* Style the CommentIcon */
+  .CommentIcon {
+    margin-top: 10px;
+    display: block;
+    width: 24px;
+    height: 24px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    color: #333;
+    font-weight: bold;
+  }
+  
