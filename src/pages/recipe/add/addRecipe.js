@@ -1,8 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Typography, Button, Paper, Container, TextField, Box } from '@mui/material';
+import { Typography, Button, Paper, Container, TextField } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
 import FoodBankRoundedIcon from '@mui/icons-material/FoodBankRounded';
+import Box from '@mui/material/Box';
+
 import AddIngridient from "./AddIngredients";
 import ChooseCategories from "./ChooseCategories";
 import ChooseTags from "./ChooseTags"
@@ -19,13 +22,14 @@ const AddRecipe = () => {
   const [steps, setSteps] = useState([{ number: 1, direction: '' }]);
   const [selectedCategories, setSelectedCategories] = useState([])
   const [selectedTags, setSelectedTags] = useState([])
-  const [img, setImg] = useState("url")
+  const [img, setImg] = useState(null)
 
   const [err, setErr] = useState(null);
-
+  const [loading, setLoading] = useState(false);
   // const navigate = useNavigate()
 
   const handleAddRecipe = async () => {
+    setLoading(true);
     const newRrecipe = {
       name,
       img,
@@ -38,15 +42,23 @@ const AddRecipe = () => {
       tags: selectedTags,
       categories: selectedCategories
     };
-    
+
     let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
     const recipe = await axios.post("http://localhost:3600/api/recipe", newRrecipe, config)
-    debugger;
-  }
-  const aaa = async (e) => {
-    debugger;
   }
 
+  const handleFileChange = (event) => {
+
+    const selectedFile = event.target.files[0];
+    setImg(selectedFile);
+
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    // fetch("/upload", {
+    //   method: "POST",
+    //   body: formData,
+    // })
+  };
 
   return (
     <Box
@@ -85,17 +97,32 @@ const AddRecipe = () => {
             variant="standard"
             onChange={(e) => { setServes(e.target.value) }}
           />
-          <DifficultySelector difficult={difficult} setDifficult={setDifficult}></DifficultySelector>
-          <AddIngridient ingredients={ingredients} setIngredients={setIngredients}></AddIngridient>
-          <AddSteps setSteps={setSteps} steps={steps}></AddSteps>
-          <ChooseCategories selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories}></ChooseCategories>
-          <ChooseTags selectedTags={selectedTags} setSelectedTags={setSelectedTags}></ChooseTags>
-          <Button variant="contained" component="label">
+          <DifficultySelector difficult={difficult} setDifficult={setDifficult} />
+          <AddIngridient ingredients={ingredients} setIngredients={setIngredients} />
+          <AddSteps setSteps={setSteps} steps={steps} />
+          <ChooseCategories selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
+          <ChooseTags selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+          <Button variant="outlined" component="label">
             Upload img
-            <input hidden accept="image/*" multiple type="file" onChange={(e)=>{aaa(e)}} />
+            <input hidden accept="image/*" multiple type="file" onChange={handleFileChange}
+            />
           </Button>
-          <br></br>
-          <Button onClick={handleAddRecipe}>add recipe</Button>
+          {img && (
+            <img
+              src={URL.createObjectURL(img)}
+              alt={`Uploaded image`}
+              style={{ maxWidth: "200px", maxHeight: "200px" }}
+            />
+          )}
+          <LoadingButton
+            size="large"
+            onClick={handleAddRecipe}
+            loading={loading}
+            loadingPosition="end"
+            variant="outlined"
+          >
+            <span>add recipe</span>
+          </LoadingButton>
         </Paper>
       </Container>
     </Box>
@@ -103,16 +130,3 @@ const AddRecipe = () => {
 }
 
 export default AddRecipe
-
-
-
-
-
-
-
-
-
-
-
-
-

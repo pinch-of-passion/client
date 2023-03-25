@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Box from '@mui/system/Box';
 import { IconButton, Alert, TextField, FormGroup } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 const AddSteps = ({ steps, setSteps }) => {
 
@@ -24,11 +24,13 @@ const AddSteps = ({ steps, setSteps }) => {
     }
 
     return (
-        <Box>
+        <>
             <Typography htmlFor="recipesteps" shrink variant="h6">steps:</Typography>
             {steps.map((step, index) => {
                 return (
-                    <FormGroup row key={index}>
+                    <Stack
+                        direction={{ xs: 'column', sm: 'row' }}
+                        >
                         <TextField
                             value={step.direction}
                             key={step.number}
@@ -43,18 +45,14 @@ const AddSteps = ({ steps, setSteps }) => {
                                 setSteps(values);
                             }}
                         ></TextField>
-                        <IconButton aria-label="delete" size="small"><DeleteIcon  onClick={() => deleteStep(step.number)} /></IconButton>
-                    </FormGroup>
+                        <IconButton aria-label="delete" size="small"><DeleteIcon onClick={() => deleteStep(step.number)} /></IconButton>
+                    </Stack>
                 )
             })}
             <IconButton aria-label="add" size="large"><AddIcon fontSize="large" onClick={addStep} /></IconButton>
             {alert && <Alert sx={{ width: "50ch" }} severity="error">{alert}</Alert>}
-        </Box>
+        </>
     );
 }
 
 export default AddSteps;
-
-
-
-

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Grid, Box, Pagination } from '@mui/material';
-import GridRecipe from "./gridRecipe"
+import { Box, Pagination } from '@mui/material';
+// import { Grid, Box, Pagination } from '@mui/material';
+//import GridRecipe from "./gridRecipe"
 
 const recipes = [
   { title: 'Recipe 1', image: 'https://via.placeholder.com/150' },
@@ -36,8 +37,8 @@ const RecipesGrid = () => {
     <Box sx={{ display:'flex', justifyContent:"center", alignItems:'center'}}>
       <Grid container spacing={2}  xs={4}>
         {visibleRecipes.map((recipe, index) => (
-
-              <GridRecipe image={recipe.image} title={recipe.title}  key={index}/>
+<></>
+              // <GridRecipe image={recipe.image} title={recipe.title}  key={index}/>
         ))}
       </Grid>
     </Box>

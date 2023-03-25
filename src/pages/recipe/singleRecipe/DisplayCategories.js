@@ -1,13 +1,32 @@
-import React from 'react'
+import * as React from 'react';
+import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
+import { Paper, Box } from '@mui/material';
 
-export const DisplayCategories = ({categories}) => {
-        const category = categories.map(element => {
-        return <div>{element}</div>
-    })
+const DisplayCategories = ({ categories }) => {
     return (
-        <div>{category}</div>
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                '& > :not(style)': {
+                    m: 1,
+                    width: 128,
+                    textAlign: 'center',
+                    height: 50,
+                    lineHeight: '50px',
+                    elevation: 6,
+                },
+            }}
+        >
+            {categories.map(category => (
+                <Paper><LocalOfferRoundedIcon></LocalOfferRoundedIcon>{category}</Paper>
+            ))}
+        </Box>
     )
 }
+export default DisplayCategories
+
+
 
 //להציג קטגוריות כCHIP
 // import * as React from 'react';

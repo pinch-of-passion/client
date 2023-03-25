@@ -1,16 +1,29 @@
-import React from 'react'
-import IngredientHover from './ingredientHover'
-export const DisplayIngredients = ({ ingredients }) => {
-    const pluralize = require('pluralize')
-    const ing = ingredients.map(element => {
-        return <>
-            <div>{element.recipeIngredient.qty}  {element.recipeIngredient.measuringUtensilId}  </div>
-            <IngredientHover name={pluralize(element.name, element.recipeIngredient.qty)} img={element.img}></IngredientHover>
-        </>})
+import * as React from 'react';
+import { Paper, Box, Tooltip } from '@mui/material';
 
-return (
-    <div>{ing}</div>
-
-)
-    
+const DisplayIngredients = ({ ingredients }) => {
+    return (
+        <Box>
+            {ingredients.map(ingredient => (
+                <div>
+                    {/* <Typography variant='h6'>{`${ingredient.recipeIngredient.qty} cup`}</Typography> */}
+                    <span variant='h6'>{`${ingredient.recipeIngredient.qty} cup`}</span>
+                    <Tooltip
+                        arrow
+                        title={
+                            <div>
+                                {ingredient.img && <img src={ingredient.img} alt={ingredient.ingredient} />}
+                                <button>dont have?</button>
+                            </div>
+                        }
+                        enterDelay={500}
+                    >
+                    {/* <Typography variant='h6'>{` ${ingredient.name}`}</Typography> */}
+                    <span variant='h6'>{` ${ingredient.name}`}</span>
+                    </Tooltip>
+                </div>
+            ))}
+        </Box>
+    )
 }
+export default DisplayIngredients
