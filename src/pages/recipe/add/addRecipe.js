@@ -17,7 +17,7 @@ const AddRecipe = () => {
   const [description, setDescription] = useState("")
   const [preperingTime, setPreperingTime] = useState("")
   const [serves, setServes] = useState("")
-  const [difficult, setDifficult] = useState("Easy")
+  const [difficult, setDifficult] = useState("easy")
   const [ingredients, setIngredients] = useState([{ qty: '', measuringUtensilId: '', ingredientId: '' }])
   const [steps, setSteps] = useState([{ number: 1, direction: '' }]);
   const [selectedCategories, setSelectedCategories] = useState([])
