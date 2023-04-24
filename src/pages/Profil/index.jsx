@@ -1,54 +1,35 @@
 import * as React from 'react';
-import {Tab,Box,Paper,TextField,InputAdornment} from '@mui/material';
+import { Tab, Box, Paper, TextField, InputAdornment, Typography } from '@mui/material';
 import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
+import {TabList,TabPanel} from '@mui/lab';
 import SearchIcon from '@mui/icons-material/Search';
 import MyRecipies from './MyRecipes'
 import SharedRecipes from './SharedRecipes';
 
 function Profil() {
-  const [value, setValue] = React.useState('MyRecipies');
+  const [curentTab, setCurentTab] = React.useState('MyRecipies');
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
 
   return (
-    <Box sx={{ width: '100%', typography: 'body1',mt:"5px" }}>
-      <div>
+    <Box sx={{ width: '100%', typography: 'body1', mt: "5px" }}>
         <Paper elevation={0}
           sx={{
             textAlign: 'center',
             fontSize: 60,
-            backgroundColor: "#a8e39f",
-            mb:"40px"
+            backgroundColor: "#f9c8d9",
+            mb: "40px"
           }}
-        >Favorites
+        >
+          <Typography sx={{ fontSize: 60 }}>Favorites</Typography>
           <div>
-            <TextField
-            sx={{
-              width:"35%",
-              borderRadius: "300px",
-              borderColor:"#609159"
-              }}
-              placeholder="Search"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              }}
-            />
+            
           </div>
         </Paper>
-      </div>
-      <TabContext value={value}>
+      <TabContext value={curentTab}>
         <Box >
           <TabList
             centered
-            onChange={handleChange}
+            onChange={(event,newValue)=>{setCurentTab(newValue)}}
             textColor="secondary"
             indicatorColor="secondary"
           >

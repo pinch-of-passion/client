@@ -21,6 +21,7 @@ function ShowSpoonacularRecipe({recipeId}) {
             if (ans.data) {
                 setRecipe(ans.data);
             }
+            
         }
         fetchData()
     }, []);

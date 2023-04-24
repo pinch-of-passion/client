@@ -68,7 +68,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Nav() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const {currentUser} = "null"//useContext(AuthContext);
+    const currentUser = "null"//useContext(AuthContext);
     const [searchText, setSearchText] = React.useState("");
     const navigate = useNavigate();
 
@@ -134,7 +134,7 @@ export default function Nav() {
                         onClick={() => { navigate("/") }}
                     >
                         CookWebsite
-                    </Typography>
+                    </Typography> 
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon onClick={() => { navigate("/spoonacular/Search") }} />
