@@ -31,12 +31,12 @@ const AddIngredients = ({ ingredients, setIngredients }) => {
             setAlert("Please select an ingredient");
         
         else
-            setIngredients([...ingredients, { qty: '', measuringUtensilId: '', ingredientId: '' }]);
+            setIngredients([...ingredients, { qty: 0, measuringUtensilId: '', ingredientId: '',meta:'' }]);
     };
 
     const handleRemoveIngredient = (index) => {
         if (ingredients.length === 1) 
-            setIngredients([{ qty: '', measuringUtensilId: '', ingredientId: '' }]);
+            setIngredients([{ qty: 0, measuringUtensilId: '', ingredientId: '' ,meta:''}]);
         
         else {
             const values = [...ingredients];
@@ -47,7 +47,7 @@ const AddIngredients = ({ ingredients, setIngredients }) => {
 
     return (
         <Box>
-            <Typography htmlFor="recipeIngredients" shrink variant="h6">ingredients:</Typography>
+            <Typography htmlFor="recipeIngredients" shrink variant="h4">ingredients:</Typography>
             {ingredients.map((ingredient, index) => (
                 <FormGroup row key={index} sx={{ '& .MuiTextField-root': { m: 1, width: '20ch', display: 'flex', flexDirection: 'row', } }}>
                     <TextField
@@ -58,7 +58,7 @@ const AddIngredients = ({ ingredients, setIngredients }) => {
                         variant="standard"
                         onChange={(event) => {
                             const values = [...ingredients];
-                            values[index].qty = event.target.value;
+                            values[index].qty = parseInt(event.target.value);
                             setIngredients(values);
                         }}
                     ></TextField>
@@ -86,8 +86,18 @@ const AddIngredients = ({ ingredients, setIngredients }) => {
                             values[index].ingredientId = newValue.id;
                             setIngredients(values);
                         }}
-
                     />
+                    <TextField
+                        id={`qty-${index}}`}
+                        value={ingredient.meta}
+                        label="meta "
+                        variant="standard"
+                        onChange={(event) => {
+                            const values = [...ingredients];
+                            values[index].meta = event.target.value;
+                            setIngredients(values);
+                        }}
+                    ></TextField>
                     <IconButton aria-label="delete" size="small"><DeleteIcon fontSize="small" onClick={() => handleRemoveIngredient(index)} /></IconButton>
                 </FormGroup>
             ))}

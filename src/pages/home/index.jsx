@@ -1,16 +1,17 @@
-import ShowRecipe from "../recipe/singleRecipe/ShowRecipe"
-import AddressForm from "../recipe/add/form"
+import LeftFixedButtons from './LeftFixedButtons';
+
 // import RecipesGrid from "../recipe/recipeGrid"
 const Home = () => {
   return (<>
-  
-{/* <AddressForm></AddressForm> */}
-<ShowRecipe></ShowRecipe>
-{/* <RecipesGrid></RecipesGrid> */}
+    <div>
+      <LeftFixedButtons />
+    </div>
+
   </>
     
   )
 }
 
 export default Home
+
 

@@ -25,7 +25,8 @@ const AddSteps = ({ steps, setSteps }) => {
 
     return (
         <>
-            <Typography htmlFor="recipesteps" shrink variant="h6">steps:</Typography>
+        
+            <Typography htmlFor="recipesteps" shrink variant="h4">steps:</Typography>
             {steps.map((step, index) => {
                 return (
                     <Stack
@@ -44,6 +45,7 @@ const AddSteps = ({ steps, setSteps }) => {
                                 values[step.number - 1].direction = event.target.value;
                                 setSteps(values);
                             }}
+                            sx={{ width: "50%" }}
                         ></TextField>
                         <IconButton aria-label="delete" size="small"><DeleteIcon onClick={() => deleteStep(step.number)} /></IconButton>
                     </Stack>
