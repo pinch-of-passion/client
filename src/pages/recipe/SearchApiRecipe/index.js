@@ -287,7 +287,7 @@ const SearchSpoonacularRecipe = () => {
             <Box sx={{
                 marginRight: 'auto',
                 marginLeft: 'auto',
-                textAlign: 'center',
+                justifyContent: 'center',
                 boxShadow: 1,
                 borderRadius: 2,
                 backgroundColor: 'pink',
