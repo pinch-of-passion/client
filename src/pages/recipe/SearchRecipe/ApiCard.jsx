@@ -7,14 +7,6 @@ const ApiCard = ({ image }) => {
 
     return (
         <>
-            <AspectRatio ratio="1.75">
-                <img border="none" outline="none"
-                    src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=318"
-                    // src={image}
-                    loading="lazy"
-                    alt=""
-                />
-            </AspectRatio>
             <IconButton onClick={(event)=>{event.preventDefault(); alert("clicked edit");event.preventDefault();}}
                 size="md"
                 variant="solid"

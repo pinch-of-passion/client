@@ -4,7 +4,7 @@ import RecipeCard from './RecipeCard'
 const RecipesGrid = ({recipes,src}) => {
 
     return (
-        <div style={{ flexWrap: "wrap", justifyContent: "center", display: "flex" }}>
+        <div style={{ flexWrap: "wrap", justifyContent: "center", display: "flex",padding:50}}>
             {recipes.map((recipe,index) => (
                 <RecipeCard key={index} recipe={recipe} src={src} />
             ))}
@@ -14,4 +14,4 @@ const RecipesGrid = ({recipes,src}) => {
 
 export default RecipesGrid
 
-
+ 

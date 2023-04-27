@@ -3,6 +3,7 @@ import RecipeCard from './RecipeCard'
 import { Box, Pagination, Paper } from '@mui/material';
 import axios from "axios"
 import RecipesGrid from './RecipesGrid';
+import Filters from './Filters';
 
 
 const recipesList = [
@@ -236,6 +237,7 @@ const recipesList = [
         "serves": 4
     }
 ]
+
 const SearchRecipe = ({ src }) => {
 
     const [page, setPage] = useState(1);
@@ -244,12 +246,29 @@ const SearchRecipe = ({ src }) => {
     const startIndex = (page - 1) * itemsPerPage;
     const visibleRecipes = recipesList.slice(startIndex, startIndex + itemsPerPage);
     const [recipes, setRecipes] = useState([]);
+    const [where, setWhere] = useState({
+        name:null,
+        selectedDiets:[],
+        selectedTypes:[],
+        includeIngredients:[],
+        excludeIngredients:[],
+        maxReadyTime:null
+    });
 
-    
+    useEffect(() => {
+       //fetch recipes
+    }, [where,page]);
+
+
+    const deleteRecipe=async(id)=>{
+        let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
+        const ans = await axios.delete(`http://localhost:3600/api/recipe/${id}`)
+        debugger
+    }
 
 
     return (<>
-        {/* <Filters recipes={recipes} setRecipes={setRecipes} /> */}
+        <Filters where={where} setWhere={setWhere}/>
         <RecipesGrid src={src} recipes={visibleRecipes} />
         <Pagination count={totalPages} page={page} onChange={(event, page) => { setPage(page) }} />
     </>

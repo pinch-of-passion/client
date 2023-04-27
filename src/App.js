@@ -3,7 +3,6 @@ import AddRecipe from './pages/recipe/add/addRecipe';
 import ShowSpoonacularRecipe from "./pages/recipe/ShowSpoonacularRecipe"
 import Home from './pages/home';
 import MyAccunt from './pages/Profil';
-import SearchApiRecipe from "./pages/recipe/SearchApiRecipe"
 import Nav from './pages/Nav';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -21,8 +20,8 @@ function App() {
           <Route path='/signIn' element={<SignIn />} />
           <Route path='/signUp' element={<SignUp />} />
 
-          <Route path='/Api/Search' element={<SearchRecipe src={"api"} />} />
-          <Route path='/spoonacular/Search' element={<SearchRecipe src={"spoonacular"}/>} />
+          <Route path='/Api/Search' element={<SearchRecipe src="api" />} />
+          <Route path='/spoonacular/Search' element={<SearchRecipe src="spoonacular"/>} />
 
           <Route path='/CreateRecipe' element={<AddRecipe/>} />
 
