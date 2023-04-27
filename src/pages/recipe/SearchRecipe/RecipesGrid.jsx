@@ -5,7 +5,7 @@ const RecipesGrid = ({recipes,src}) => {
 
     return (
         <div style={{ flexWrap: "wrap", justifyContent: "center", display: "flex",padding:50}}>
-            {recipes.map((recipe,index) => (
+            {recipes?.map((recipe,index) => (
                 <RecipeCard key={index} recipe={recipe} src={src} />
             ))}
         </div>

@@ -7,7 +7,7 @@ import { red } from '@mui/material/colors';
 
 function Filters({ where, setWhere }) {
 
-  const [ingredients, setiIngredients] = useState([{ id:1,name: "aaa" }, { id:2,name: "bbdrgs" }, { id:3,name: "cccg" }]);
+  const [ingredients, setiIngredients] = useState([{ id:1,name: "sugar" }, { id:2,name: "chocolate" }, { id:3,name: "water" }]);
   const [types, setTypes] = useState([{ id:1,name: "drink" }, { id:2,name: "super" }, { id:3,name: "brakfast" }]);
   const [diets, setDiets] = useState([{ id:1,name: "gluten-free" }, { id:2,name: "daire-free" }, { id:3,name: "diet" }]);
 
@@ -99,7 +99,7 @@ function Filters({ where, setWhere }) {
           />
           <Autocomplete
             limitTags={1}
-            options={["less than 15 min", "less than 30 min", "less than 45 min", "less than 60 min"]}
+            options={["15", "30", "45", "60"]}
             getOptionLabel={(option) => option}
             value={where.maxReadyTime}
             renderInput={(params) => (

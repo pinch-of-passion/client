@@ -244,7 +244,6 @@ const SearchRecipe = ({ src }) => {
     const itemsPerPage = 16;
     const totalPages = Math.ceil(recipesList.length / itemsPerPage);
     const startIndex = (page - 1) * itemsPerPage;
-    const visibleRecipes = recipesList.slice(startIndex, startIndex + itemsPerPage);
     const [recipes, setRecipes] = useState([]);
     const [where, setWhere] = useState({
         name: null,
@@ -255,23 +254,23 @@ const SearchRecipe = ({ src }) => {
         maxReadyTime: null
     });
 
-    const generateSpoonacularUrl = async () => {
+    const generateSpoonacularUrl = () => {
         console.log(where);
         debugger;
-        let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=0504f698616c4f9ea9fbaf8db69ccd8d&number=${itemsPerPage}&offset=${startIndex}`
-
+        let url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=0504f698616c4f9ea9fbaf8db69ccd8d&'
+        url+=`number=${itemsPerPage}&offset=${startIndex}&`
         if (where.name)
             url += `query=${where.name}&`
         if (where.maxReadyTime)
             url += `maxReadyTime=${where.maxReadyTime}&`
         if (where.excludeIngredients.length > 0)
-            url += `excludeIngredients=${where.excludeIngredients.join(',')}&`
+            url += `excludeIngredients=${where.excludeIngredients.map(o=>o.name).join(',')}&`
         if (where.includeIngredients.length > 0)
-            url += `includeIngredients=${where.includeIngredients.join(',')}&`
+            url += `includeIngredients=${where.includeIngredients.map(o=>o.name).join(',')}&`
         if (where.selectedDiets.length > 0)
-            url += `diet=${where.selectedDiets.join(',')}&`
+            url += `diet=${where.selectedDiets.map(o=>o.name).join(',')}&`
         if (where.selectedTypes.length > 0)
-            url += `type=${where.selectedTypes.join(',')}&`
+            url += `type=${where.selectedTypes.map(o=>o.name).join(',')}&`
         return url;
     }
     useEffect(() => {
@@ -285,8 +284,11 @@ const SearchRecipe = ({ src }) => {
         // //fetchDdata()
         // debugger
         async function fetchData() {
-            const ans = await axios.get(generateSpoonacularUrl())
+            const url=generateSpoonacularUrl()
+            debugger
+            const ans = await axios.get(url)
             debugger;
+            setRecipes(ans.data.results)
             
         }
         fetchData()
@@ -302,7 +304,7 @@ const SearchRecipe = ({ src }) => {
 
     return (<>
         <Filters where={where} setWhere={setWhere} />        
-        <RecipesGrid src={src} recipes={visibleRecipes} />
+        <RecipesGrid src={src} recipes={recipes} />
         <Pagination count={totalPages} page={page} onChange={(event, page) => { setPage(page) }} />
     </>
     )
