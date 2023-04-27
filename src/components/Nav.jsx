@@ -22,7 +22,7 @@ import { GiCook } from "react-icons/gi";
 import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import { AuthContext } from '../context/authContext';
+// import { AuthContext } from '../context/authContext';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',

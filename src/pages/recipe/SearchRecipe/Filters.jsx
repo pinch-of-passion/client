@@ -7,9 +7,9 @@ import { red } from '@mui/material/colors';
 
 function Filters({ where, setWhere }) {
 
-  const [ingredients, setiIngredients] = useState([{ name: "aaa" }, { name: "bbdrgs" }, { name: "cccg" }]);
-  const [types, setTypes] = useState([]);
-  const [diets, setDiets] = useState([]);
+  const [ingredients, setiIngredients] = useState([{ id:1,name: "aaa" }, { id:2,name: "bbdrgs" }, { id:3,name: "cccg" }]);
+  const [types, setTypes] = useState([{ id:1,name: "drink" }, { id:2,name: "super" }, { id:3,name: "brakfast" }]);
+  const [diets, setDiets] = useState([{ id:1,name: "gluten-free" }, { id:2,name: "daire-free" }, { id:3,name: "diet" }]);
 
   useEffect(() => {
 
@@ -44,7 +44,8 @@ function Filters({ where, setWhere }) {
       }}>
       <h1>filter</h1>
       <div>
-        <Input placeholder="something yummy is coming..." variant="outlined" color="danger" sx={{ margin: 5 }} />
+        <Input placeholder="something yummy is coming..." variant="outlined" color="danger" sx={{ margin: 5 }}
+          onChange={event => setWhere({...where, name:event.target.value})} />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
           <Autocomplete
             multiple
@@ -109,17 +110,19 @@ function Filters({ where, setWhere }) {
           />
 
         </Stack>
-       
+
         {<Divider variant="middle" sx={{ padding: 2 }} />}
-        <div style={{ flexWrap: "wrap", justifyContent: "flex-start", display: "flex"}}> {where.includeIngredients?.length != 0 &&
+        <div style={{ flexWrap: "wrap", justifyContent: "flex-start", display: "flex" }}> {where.includeIngredients?.length != 0 &&
           <SelectedFilter name="includeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
-        {where.excludeIngredients?.length != 0 &&
-          <SelectedFilter name="excludeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
-        {where.selectedDiets?.length != 0 &&
-          <SelectedFilter name="selectedDiets" where={where} setWhere={setWhere}></SelectedFilter>}
-        {where.selectedTypes?.length != 0 &&
-          <SelectedFilter name="selectedTypes" where={where} setWhere={setWhere}></SelectedFilter>}
-     </div> </div>
+          {where.excludeIngredients?.length != 0 &&
+            <SelectedFilter name="excludeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
+          {where.selectedDiets?.length != 0 &&
+            <SelectedFilter name="selectedDiets" where={where} setWhere={setWhere}></SelectedFilter>}
+          {where.selectedTypes?.length != 0 &&
+            <SelectedFilter name="selectedTypes" where={where} setWhere={setWhere}></SelectedFilter>}
+        </div> </div>
+        <button onClick={()=>{debugger}}>debugger</button>
+
     </Paper>
   )
 }

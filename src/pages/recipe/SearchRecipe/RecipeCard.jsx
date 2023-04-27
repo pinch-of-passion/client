@@ -13,7 +13,7 @@ const RecipeCard = ({ recipe, src, setRecipes }) => {
     return (
         <Card onClick={() => alert("card clicked")} variant="outlined"
             sx={{
-                width: "320px", m: 3, borderWidth: 0,
+                minWidth: "320px", m: 3, borderWidth: 0,
                 '&:hover': { boxShadow: '6px 6px 2px 1px rgba(189, 104, 109, .2)' },
             }}>
             <CardOverflow>
