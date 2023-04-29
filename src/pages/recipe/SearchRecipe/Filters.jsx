@@ -7,9 +7,9 @@ import { red } from '@mui/material/colors';
 
 function Filters({ where, setWhere }) {
 
-  const [ingredients, setiIngredients] = useState([{ id:1,name: "sugar" }, { id:2,name: "chocolate" }, { id:3,name: "water" }]);
-  const [types, setTypes] = useState([{ id:1,name: "drink" }, { id:2,name: "super" }, { id:3,name: "brakfast" }]);
-  const [diets, setDiets] = useState([{ id:1,name: "gluten-free" }, { id:2,name: "daire-free" }, { id:3,name: "diet" }]);
+  const [ingredients, setiIngredients] = useState([{ id: 1, name: "sugar" }, { id: 2, name: "chocolate" }, { id: 3, name: "water" }]);
+  const [types, setTypes] = useState([{ id: 1, name: "drink" }, { id: 2, name: "super" }, { id: 3, name: "brakfast" }]);
+  const [diets, setDiets] = useState([{ id: 1, name: "gluten-free" }, { id: 2, name: "daire-free" }, { id: 3, name: "diet" }]);
 
   useEffect(() => {
 
@@ -45,7 +45,8 @@ function Filters({ where, setWhere }) {
       <h1>filter</h1>
       <div>
         <Input placeholder="something yummy is coming..." variant="outlined" color="danger" sx={{ margin: 5 }}
-          onChange={event => setWhere({...where, name:event.target.value})} />
+          onChange={event => setWhere({ ...where, name: event.target.value })}
+        />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
           <Autocomplete
             multiple
@@ -56,6 +57,9 @@ function Filters({ where, setWhere }) {
             renderInput={(params) => (
               <TextField {...params} label="includeIngredients" placeholder="includeIngredients" />
             )}
+            InputProps={{style:{
+              color:"#ff0000"
+            }}}
             sx={{ width: '350px', borderColor: "#ff0000" }}
             onChange={(event, values) => { setWhere({ ...where, includeIngredients: values }) }}
           />
@@ -108,7 +112,6 @@ function Filters({ where, setWhere }) {
             sx={{ width: '350px', borderBlockColor: 'red' }}
             onChange={(event, value) => { debugger; setWhere({ ...where, maxReadyTime: value }) }}
           />
-
         </Stack>
 
         {<Divider variant="middle" sx={{ padding: 2 }} />}
@@ -121,7 +124,7 @@ function Filters({ where, setWhere }) {
           {where.selectedTypes?.length != 0 &&
             <SelectedFilter name="selectedTypes" where={where} setWhere={setWhere}></SelectedFilter>}
         </div> </div>
-        <button onClick={()=>{debugger}}>debugger</button>
+      <button onClick={() => { debugger }}>debugger</button>
 
     </Paper>
   )

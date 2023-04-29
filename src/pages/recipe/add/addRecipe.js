@@ -18,7 +18,6 @@ import { borderRadius } from "@mui/system";
 const AddRecipe = () => {
 
 
-  useEffect(() => { })
   const [name, setName] = useState("")
   const [description, setDescription] = useState("")
   const [preperingTime, setPreperingTime] = useState()

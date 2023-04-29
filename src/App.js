@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import AddRecipe from './pages/recipe/add/addRecipe';
+import EditOrCreateRecipe from './pages/recipe/EditOrCreateRecipe';
 import ShowSpoonacularRecipe from "./pages/recipe/ShowSpoonacularRecipe"
 import Home from './pages/home';
 import Profil from './pages/Profil';
@@ -23,7 +23,8 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path='/Api/Search' element={<SearchRecipe src="api" />} />
           <Route path='/spoonacular/Search' element={<SearchRecipe src="spoonacular" />} />
-          <Route path='/CreateRecipe' element={<AddRecipe />} />
+          <Route path='/CreateRecipe' element={<EditOrCreateRecipe action="creat" />} />
+          <Route path='/EditRecipe' element={<EditOrCreateRecipe action="edit" />} />
           <Route path='/spoonacular/Show/:id' element={<ShowSpoonacularRecipe recipeId={883394} />} />
         </Routes>
       </Router>

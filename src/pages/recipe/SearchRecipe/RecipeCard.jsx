@@ -5,10 +5,10 @@ import Divider from '@mui/joy/Divider';
 import Typography from '@mui/joy/Typography';
 import axios from "axios"
 import ApiCard from './ApiCard';
-import SpoonacularCard from './SpoonacularCard copy';
+import SpoonacularCard from './SpoonacularCard';
 import AspectRatio from '@mui/joy/AspectRatio';
 
-const RecipeCard = ({ recipe, src, setRecipes }) => {
+const RecipeCard = ({ recipe, src, setRefresh}) => {
 
     return (
         <Card onClick={() => alert("card clicked")} variant="outlined"
@@ -24,7 +24,7 @@ const RecipeCard = ({ recipe, src, setRecipes }) => {
                         alt=""
                     />
                 </AspectRatio>
-                {src == "api" ? <ApiCard /> : <SpoonacularCard />}
+                {src == "api" ? <ApiCard setRefresh={setRefresh} recipe={recipe}/> : <SpoonacularCard recipe={recipe}/>}
             </CardOverflow>
             <div style={{ height: 120 }}>
                 <Typography level="h4" sx={{ fontSize: '32', mt: 2, fontWeight: '10' }}>
