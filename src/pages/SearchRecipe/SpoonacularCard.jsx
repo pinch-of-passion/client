@@ -11,7 +11,7 @@ const SpoonacularCard = ({ image }) => {
                     //position: 'absolute',
                     zIndex: 2,
                     borderRadius: '50%',
-                    left: '17rem',
+                    left: '16rem',
                     bottom: 45,
                     backgroundColor:"#d3232f",
                     color:"#ffffff",

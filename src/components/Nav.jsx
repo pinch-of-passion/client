@@ -23,7 +23,7 @@ import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { AuthContext } from '../context/authContext';
-import Logout from '../pages/Logout';
+import Logout from '../pages/auth/Logout';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',

@@ -3,7 +3,7 @@ import { Box, Pagination, Paper } from '@mui/material';
 import axios from "axios"
 import RecipesGrid from './RecipesGrid';
 import Filters from './Filters';
-import { useLocation,  } from 'react-router-dom';
+import { useLocation, } from 'react-router-dom';
 
 
 const SearchRecipe = ({ src }) => {
@@ -12,8 +12,8 @@ const SearchRecipe = ({ src }) => {
     const [recipes, setRecipes] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [page, setPage] = useState(1);
-    const [itemsPerPage,setItemsPerPage] = useState(20);
-    const [totalPages,setTotalPagegs] =useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(20);
+    const [totalPages, setTotalPagegs] = useState(1);
     const startIndex = (page - 1) * itemsPerPage;
     const [where, setWhere] = useState({
         name: null,
@@ -25,7 +25,7 @@ const SearchRecipe = ({ src }) => {
     });
 
     const generateSpoonacularUrl = () => {
-        let url = 'https://api.spoonacular.com/recipes/complexSearch?apiKey=0504f698616c4f9ea9fbaf8db69ccd8d&'
+        let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY2}&`
         url += `number=${itemsPerPage}&offset=${startIndex}&`
         if (where.name)
             url += `query=${where.name}&`
@@ -44,21 +44,24 @@ const SearchRecipe = ({ src }) => {
 
     useEffect(() => {
         async function fetchData() {
-            // const name=
             const url = generateSpoonacularUrl()
             const ans = await axios.get(url)
             setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
             setRecipes(ans.data.results)
         }
         fetchData()
-    }, [where,page,itemsPerPage,refresh]);
+    }, [where, page, itemsPerPage, refresh]);
+
+    useEffect(() => {
+        setWhere({ ...where, name:queryParams.get("name")})
+    }, []);
 
     return (
-    <>
-        <Filters where={where} setWhere={setWhere} />
-        <RecipesGrid src={src} recipes={recipes} setRefresh={setRefresh} />
-        <Pagination count={totalPages} page={page} onChange={(event, page) => { setPage(page) }} />
-    </>
+        <>
+            <Filters where={where} setWhere={setWhere} />
+            <RecipesGrid src={src} recipes={recipes} setRefresh={setRefresh} />
+            <Pagination count={totalPages} page={page} onChange={(event, page) => { setPage(page) }} />
+        </>
     )
 }
 

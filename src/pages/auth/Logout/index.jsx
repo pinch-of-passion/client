@@ -1,5 +1,5 @@
 import { useContext, useState, React } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { AuthContext } from '../../../context/authContext';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';

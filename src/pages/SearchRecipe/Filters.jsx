@@ -44,7 +44,7 @@ function Filters({ where, setWhere }) {
       }}>
       <h1>filter</h1>
       <div>
-        <Input placeholder="something yummy is coming..." variant="outlined"  sx={{ margin: 5,width:"50%" }}
+        <Input value={where.name} placeholder="something yummy is coming..." variant="outlined"  sx={{ margin: 5,width:"50%" }}
           onChange={event => setWhere({ ...where, name: event.target.value })}
         />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >

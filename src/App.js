@@ -3,12 +3,13 @@ import EditOrCreateRecipe from './pages/EditOrCreateRecipe';
 import Home from './pages/home';
 import Profil from './pages/Profil';
 import SearchRecipe from "./pages/SearchRecipe";
-import Login from "./pages/Login";
-import Register from "./pages/Register"
-import Logout from "./pages/Logout"
+import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register"
+import Logout from "./pages/auth/Logout"
 import Nav from './components/Nav';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AuthContextProvider } from "./context/authContext";
+import ShowSpoonacularRecipe from "./pages/ShowSpoonacularRecipe";
 
 const theme = createTheme({
   palette: {
@@ -39,6 +40,7 @@ function App() {
               <Route path='/spoonacular/Search' element={<SearchRecipe src="spoonacular" />} />
               <Route path='/CreateRecipe' element={<EditOrCreateRecipe action="create" />} />
               <Route path='/EditRecipe' element={<EditOrCreateRecipe action="edit" />} />
+              <Route path='/spoonacular/show' element={<ShowSpoonacularRecipe recipeId={883394} />} />
             </Routes>
           </ThemeProvider>
         </Router>
