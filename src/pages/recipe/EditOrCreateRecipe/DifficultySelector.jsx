@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import Typography from '@mui/material/Typography';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { Typography } from '@mui/joy';
 
-function DifficultySelector({ difficult, setDifficult }) {
+function DifficultySelector({ recipe, setRecipe }) {
 
-  const handleChange = (event, diff) => {
-    if (diff !== null) {
-      setDifficult(diff);
+  const handleChange = (event, difficult) => {
+    if (difficult !== null) {
+      setRecipe({ ...recipe, difficult });
     }
   };
 
   return (
     <div>
+      <Typography shrink variant="h6">Difficult</Typography>
       <ToggleButtonGroup
         color="primary"
-        value={difficult}
+        value={recipe.difficult}
         exclusive
         onChange={handleChange}
       >

@@ -23,7 +23,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path='/Api/Search' element={<SearchRecipe src="api" />} />
           <Route path='/spoonacular/Search' element={<SearchRecipe src="spoonacular" />} />
-          <Route path='/CreateRecipe' element={<EditOrCreateRecipe action="creat" />} />
+          <Route path='/CreateRecipe' element={<EditOrCreateRecipe action="create" />} />
           <Route path='/EditRecipe' element={<EditOrCreateRecipe action="edit" />} />
           <Route path='/spoonacular/Show/:id' element={<ShowSpoonacularRecipe recipeId={883394} />} />
         </Routes>

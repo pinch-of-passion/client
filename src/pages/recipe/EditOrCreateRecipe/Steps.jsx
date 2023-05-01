@@ -1,36 +1,38 @@
-import React, { useState } from 'react';
-import { IconButton, Alert, TextField, FormGroup } from '@mui/material';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Alert, Paper, TextField ,IconButton,Stack} from '@mui/material';
+import React, { useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Typography } from '@mui/joy';
 
-const AddSteps = ({ steps, setSteps }) => {
 
+function Steps({ recipe, setRecipe, }) {
     const [alert, setAlert] = useState("");
 
     const addStep = () => {
-        if (!steps[steps.length - 1].direction)
+        if (!recipe.steps[recipe.steps.length - 1].direction)
             setAlert("Please enter step");
         else
-            setSteps([...steps, { number: steps.length + 1, direction: '' }]);
+            setSteps([...recipe.steps, { number: recipe.steps.length + 1, direction: '' }]);
     }
-
+    
     const deleteStep = (stepNumberToDelete) => {
-        if (steps.length === 1)
+        if (recipe.steps.length === 1)
             setSteps([{ number: 1, direction: '' }]);
         else
-            setSteps(steps.filter(s => s.number !== stepNumberToDelete).map((step, index) => ({ ...step, number: index + 1, })));
+            setSteps(recipe.steps.filter(s => s.number !== stepNumberToDelete).map((step, index) => ({ ...step, number: index + 1, })));
+    } 
+    
+    const setSteps = (steps) => {
+        setRecipe({...recipe, steps})
     }
-
     return (
-        <>
-        
-            <Typography htmlFor="recipesteps" shrink variant="h4">steps:</Typography>
-            {steps.map((step, index) => {
+        <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "98%", sm: "80%", md: "70%" } }}>
+        <Typography shrink variant="h4">steps:</Typography>
+            {recipe.steps?.map((step, index) => {
                 return (
                     <Stack
-                        direction={{ xs: 'column', sm: 'row' }}
+                        direction={{ xs: 'column', sm: 'row'}}
+                        sx={{margin:2}}
                         >
                         <TextField
                             value={step.direction}
@@ -41,11 +43,11 @@ const AddSteps = ({ steps, setSteps }) => {
                             rows={2}
                             onChange={(event) => {
                                 if (alert) setAlert("")
-                                const values = [...steps];
+                                const values = [...recipe.steps];
                                 values[step.number - 1].direction = event.target.value;
                                 setSteps(values);
                             }}
-                            sx={{ width: "50%" }}
+                            sx={{ width: "70%" }}
                         ></TextField>
                         <IconButton aria-label="delete" size="small"><DeleteIcon onClick={() => deleteStep(step.number)} /></IconButton>
                     </Stack>
@@ -53,8 +55,8 @@ const AddSteps = ({ steps, setSteps }) => {
             })}
             <IconButton aria-label="add" size="large"><AddIcon fontSize="large" onClick={addStep} /></IconButton>
             {alert && <Alert sx={{ width: "50ch" }} severity="error">{alert}</Alert>}
-        </>
-    );
+        </Paper>
+    )
 }
 
-export default AddSteps;
+export default Steps

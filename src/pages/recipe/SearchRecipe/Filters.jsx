@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
-import { Stack, Paper, Autocomplete, TextField, Divider } from '@mui/material';
+import { Stack, Paper, TextField, Divider, Autocomplete } from '@mui/material';
 import Input from '@mui/joy/Input';
 import SelectedFilter from './SelectedFilter';
 import { red } from '@mui/material/colors';
@@ -49,6 +49,7 @@ function Filters({ where, setWhere }) {
         />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
           <Autocomplete
+            color="#ff0000"
             multiple
             limitTags={0}
             options={ingredients}
@@ -109,7 +110,7 @@ function Filters({ where, setWhere }) {
             renderInput={(params) => (
               <TextField {...params} label="Cook and Prep. Time" placeholder="Cook and Prep. Time" />
             )}
-            sx={{ width: '350px', borderBlockColor: 'red' }}
+            sx={{ width: '350px' }}
             onChange={(event, value) => { debugger; setWhere({ ...where, maxReadyTime: value }) }}
           />
         </Stack>
