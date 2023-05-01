@@ -1,8 +1,9 @@
 import React from 'react'
+import SearchRecipe from '../SearchRecipe'
 
 function MyRecipes() {
   return (
-    <div>MyRecipes</div>
+    <SearchRecipe src="api"/>
   )
 }
 

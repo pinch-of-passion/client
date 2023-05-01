@@ -32,7 +32,7 @@ const ApiCard = ({ recipe, setRefresh }) => {
                     color:"#ffffff",
                     transform: 'translateY(50%)',
                 }}
-                onClick={() => { navigate(`/editRecipe?recipeId=${recipe.id}`) }}
+                onClick={(event) => { event.stopPropagation(); navigate(`/editRecipe?recipeId=${1}`) }}
             >
                 <ModeEditIcon />
             </IconButton>
@@ -45,7 +45,7 @@ const ApiCard = ({ recipe, setRefresh }) => {
                     zIndex: 2,
                     borderRadius: '50%',
                     left: '11rem',
-                    bottom: 45,
+                    bottom: 50,
                     backgroundColor:"#d3232f",
                     color:"#ffffff",
                     transform: 'translateY(50%)',

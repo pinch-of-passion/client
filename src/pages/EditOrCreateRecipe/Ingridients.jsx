@@ -38,7 +38,7 @@ function Ingridients({ recipe, setRecipe }) {
 
     const handleRemoveIngredient = (index) => {
         if (recipe.ingredients.length === 1)
-            setIngredients([{ qty: 0, measuringUtensilId: '', ingredientId: '', meta: '' }]);
+            setIngredients([{ qty: 1, measuringUtensilId: '', ingredientId: '', meta: '' }]);
 
         else {
             recipe.ingredients.splice(index, 1);
@@ -90,7 +90,6 @@ function Ingridients({ recipe, setRecipe }) {
                         value={ingredient.meta}
                         label="meta "
                         variant="standard"
-                        required
                         onChange={(event) => {
                             recipe.ingredients[index].meta = event.target.value;
                             setIngredients(recipe.ingredients);

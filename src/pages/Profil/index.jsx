@@ -12,7 +12,7 @@ function Profil() {
 
   return (
     <Box sx={{ width: '100%', typography: 'body1', mt: "5px" }}>
-        <Paper elevation={0}
+        {/* <Paper elevation={0}
           sx={{
             textAlign: 'center',
             fontSize: 60,
@@ -24,7 +24,7 @@ function Profil() {
           <div>
             
           </div>
-        </Paper>
+        </Paper> */}
       <TabContext value={curentTab}>
         <Box >
           <TabList

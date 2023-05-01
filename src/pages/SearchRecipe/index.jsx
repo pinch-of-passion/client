@@ -25,7 +25,7 @@ const SearchRecipe = ({ src }) => {
     });
 
     const generateSpoonacularUrl = () => {
-        let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY2}&`
+        let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY3}&`
         url += `number=${itemsPerPage}&offset=${startIndex}&`
         if (where.name)
             url += `query=${where.name}&`

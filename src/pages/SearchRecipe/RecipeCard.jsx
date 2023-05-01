@@ -2,11 +2,13 @@ import * as React from 'react';
 import {Card,Divider,Typography,AspectRatio} from '@mui/material';
 import ApiCard from './ApiCard';
 import SpoonacularCard from './SpoonacularCard';
+import { useNavigate } from 'react-router-dom';
 
 const RecipeCard = ({ recipe, src, setRefresh}) => {
+    const navigate=useNavigate()
 
     return (
-        <Card onClick={() => alert("card clicked")} variant="outlined"
+        <Card onClick={() => navigate(`/spoonacular/show?recipeId=${recipe?.id}`)} variant="outlined"
             sx={{
                 minWidth: "320px", maxWidth: "320px", m: 2.5, borderWidth: 0,
                 '&:hover': { boxShadow: '6px 6px 2px 1px rgba(189, 104, 109, .2)' },

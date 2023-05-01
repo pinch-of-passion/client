@@ -15,7 +15,7 @@ import ChooseCategories from './ChooseCategories';
 import ChooseTags from './ChooseTags';
 
 
-function EditOrCreateRecipe({action}) {
+function EditOrCreateRecipe({ action }) {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const [loading, setLoading] = useState(false);
@@ -31,56 +31,78 @@ function EditOrCreateRecipe({action}) {
         tags: [],
         categories: []
     });
-    const navigate=useNavigate()
+    const navigate = useNavigate()
 
     useEffect(() => {
         async function fetchData(recipeId) {
             const { data: recipeToEdit } = await axios.get(`http://localhost:3600/api/recipe/${recipeId}`)
             if (recipeToEdit) {
-                const aa={
+                debugger
+                const cleanRecipe = {
                     name: recipeToEdit.name,
                     description: recipeToEdit.description,
                     preperingTime: recipeToEdit.preperingTime,
                     serves: recipeToEdit.serves,
                     difficult: recipeToEdit.difficult,
-                    ingredients: recipeToEdit.ingredients.map(i=>({qty: '', measuringUtensilId: null, ingredientId: i.id, meta: '' })),
-                    steps: recipeToEdit.steps.map(step=>({direction:step.direction,number:step.number})),
+                    ingredients: recipeToEdit.ingredients.map(i => ({ qty: i.recipeIngredient.qty, measuringUtensilId: i.recipeIngredient.measuringUtensilId, ingredientId: i.id, meta: i.recipeIngredient.meta })),
+                    steps: recipeToEdit.steps.map(step => ({ direction: step.direction, number: step.number })),
                     img: recipeToEdit.img,
-                    tags: recipeToEdit.tags.map(tag=>tag.id),
-                    categories: recipeToEdit.categories.map(category=>category.id)
+                    tags: recipeToEdit.tags.map(tag => tag.id),
+                    categories: recipeToEdit.categories.map(category => category.id)
                 }
-                setRecipe(aa);
+                setRecipe(cleanRecipe);
             }
         }
 
-        if (action=="edit") {
+        if (action == "edit") {
             fetchData(queryParams.get("recipeId"))
         }
 
     }, []);
 
-    const handleAddRecipe = async (event) => {
-        event.preventDefault()
-        debugger
+    const handleAddRecipe = async (newRecipe) => {
         //setLoading(true);
-        
+
         let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
-        //const recipe = await axios.post("http://localhost:3600/api/recipe", recipe, config);
+        const recipe = await axios.post("http://localhost:3600/api/recipe", newRecipe, config);
+        debugger
         setLoading(false)
         alert("added")
         navigate("/")
     }
 
+    const handleEditRecipe = async () => {
+        //setLoading(true);
+        debugger
+        let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
+        const recipe = await axios.put(`http://localhost:3600/api/recipe/${recipe.id}`, recipe, config);
+        setLoading(false)
+        alert("added")
+        navigate("/")
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        debugger
+        if (action == "create")
+            handleAddRecipe(recipe)
+        if (action == "edit")
+            handleEditRecipe()
+    }
+
     return (
-        <Box component={"form"} onSubmit={handleAddRecipe} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <Box component={"form"} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <button onClick={() => { debugger }}>debbuger</button>
-            <Typography variant="h3" align="center" margin={3} color="danger">create a new recipe</Typography>
+            <Typography variant="h2" align="center" margin={3} color="danger">
+                {action == "create" ? "Create a new recipe" : "Edit your recipe"}
+            </Typography>
             <Image recipe={recipe} setRecipe={setRecipe}></Image>
             <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "90", sm: "80%", md: "70%" } }}>
                 <Typography variant="h6">recipe name</Typography>
                 <TextField
                     onChange={(e) => setRecipe({ ...recipe, name: e.target.value })}
                     required
+                    value={recipe.name}
                     size="small"
                     sx={{ width: "95%" }}
                     InputProps={{
@@ -93,6 +115,7 @@ function EditOrCreateRecipe({action}) {
                 <Typography variant="h6">Description about your recipe</Typography>
                 <TextField
                     id="recipeDescription"
+                    value={recipe.description}
                     multiline
                     rows={5}
                     size="small"
@@ -112,6 +135,7 @@ function EditOrCreateRecipe({action}) {
                     variant="outlined"
                     size="small"
                     type="number"
+                    value={recipe.serves}
                     required
                     InputProps={{
                         inputProps: { min: 1 },
@@ -125,6 +149,7 @@ function EditOrCreateRecipe({action}) {
                 <TextField
                     style={{ marginLeft: '10px' }}
                     variant="outlined"
+                    value={recipe.preperingTime}
                     size="small"
                     type="number"
                     required
@@ -143,7 +168,7 @@ function EditOrCreateRecipe({action}) {
             <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "90", sm: "80%", md: "70%" } }}>
                 <ChooseCategories recipe={recipe} setRecipe={setRecipe} />
                 <ChooseTags recipe={recipe} setRecipe={setRecipe} />
-            </Paper> 
+            </Paper>
             <LoadingButton
                 size="large"
                 loading={loading}
@@ -151,7 +176,7 @@ function EditOrCreateRecipe({action}) {
                 variant="outlined"
                 type="submit"
             >
-                <span>add recipe</span>
+                <span>{action == "create" ? "Create" : "Edit"}</span>
             </LoadingButton>
         </Box>
     )

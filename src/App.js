@@ -40,7 +40,7 @@ function App() {
               <Route path='/spoonacular/Search' element={<SearchRecipe src="spoonacular" />} />
               <Route path='/CreateRecipe' element={<EditOrCreateRecipe action="create" />} />
               <Route path='/EditRecipe' element={<EditOrCreateRecipe action="edit" />} />
-              <Route path='/spoonacular/show' element={<ShowSpoonacularRecipe recipeId={883394} />} />
+              <Route path='/spoonacular/show' element={<ShowSpoonacularRecipe/>} />
             </Routes>
           </ThemeProvider>
         </Router>

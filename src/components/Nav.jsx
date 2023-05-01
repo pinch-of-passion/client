@@ -112,7 +112,7 @@ export default function Nav() {
                 <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/createRecipe") ;handleMobileMenuClose()}}><CgAddR style={{ fontSize: 25 }} />Create</Button>
             </MenuItem>
             <MenuItem>
-                <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/Profil") ;handleMobileMenuClose()}}><GiCook style={{ fontSize: 25 }} />Profil</Button>
+                <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/Profil") ;handleMobileMenuClose()}}><GiCook style={{ fontSize: 25 }} />{currentUser.name}</Button>
             </MenuItem>
             </>
             }
@@ -155,7 +155,7 @@ export default function Nav() {
                             <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/Api/Search") }}><BsSearch style={{ fontSize: 22 }} />Search api</Button>
                             <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/spoonacular/Search") }}><BsSearch style={{ fontSize: 22 }} />Search</Button>
                             <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/createRecipe") }}><CgAddR style={{ fontSize: 25 }} />Create</Button>
-                            <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/Profil") }}><GiCook style={{ fontSize: 25 }} />Profil</Button>
+                            <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/Profil") }}><GiCook style={{ fontSize: 25 }} />{currentUser.name}</Button>
                             <Button style={{ color: "#ff0000" }} onClick={() => {  }}><Logout/></Button>
                         </>
                         }
