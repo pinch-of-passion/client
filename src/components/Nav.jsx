@@ -22,7 +22,8 @@ import { GiCook } from "react-icons/gi";
 import { AiOutlineUser } from "react-icons/ai";
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-// import { AuthContext } from '../context/authContext';
+import { AuthContext } from '../context/authContext';
+import Logout from '../pages/Logout';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -68,7 +69,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Nav() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const currentUser = "null"//useContext(AuthContext);
+    const {currentUser} = useContext(AuthContext);
     const [searchText, setSearchText] = React.useState("");
     const navigate = useNavigate();
 
@@ -117,7 +118,7 @@ export default function Nav() {
             }
             {!currentUser&& 
             <MenuItem>
-            <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/signIn") ;handleMobileMenuClose()}}>Sign In</Button>
+            <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/login") ;handleMobileMenuClose()}}>Sign In</Button>
             </MenuItem>
             }
         </Menu>
@@ -149,12 +150,13 @@ export default function Nav() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        {!currentUser && <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/signIn") }}>Sign In</Button>}
+                        {!currentUser && <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/login") }}>Sign In</Button>}
                         {currentUser && <>
                             <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/Api/Search") }}><BsSearch style={{ fontSize: 22 }} />Search api</Button>
                             <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/spoonacular/Search") }}><BsSearch style={{ fontSize: 22 }} />Search</Button>
                             <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/createRecipe") }}><CgAddR style={{ fontSize: 25 }} />Create</Button>
                             <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/Profil") }}><GiCook style={{ fontSize: 25 }} />Profil</Button>
+                            <Button style={{ color: "#ff0000" }} onClick={() => {  }}><Logout/></Button>
                         </>
                         }
                     </Box>

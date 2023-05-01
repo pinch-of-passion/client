@@ -22,7 +22,7 @@ export default function Register() {
       "http://localhost:3600/api/auth/register",
       userDetails,
       {
-        withCredentials: true
+        //  withCredentials: true
       }
     );
   };
@@ -32,15 +32,15 @@ export default function Register() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const userDetails = {
-      first_name: data.get('firstName'),
-      last_name: data.get('lastName'),
+      name: data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
     };
     try {
       await register(userDetails);
       navigate('/login');
-    } catch (error) {
+    } 
+    catch (error) {
       setError(error?.response?.data?.message);
     }
   };
@@ -65,25 +65,15 @@ export default function Register() {
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
+
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="lname"
+                  id="name"
+                  label="name"
+                  name="name"
+                  autoComplete="name"
                 />
               </Grid>
               <Grid item xs={12}>

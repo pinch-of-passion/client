@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { Typography } from '@mui/joy';
+import { Typography } from '@mui/material';
 
 function DifficultySelector({ recipe, setRecipe }) {
 

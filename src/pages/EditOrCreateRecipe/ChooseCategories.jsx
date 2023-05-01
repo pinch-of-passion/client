@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { Typography } from '@mui/joy';
+import { Typography,ToggleButton ,ToggleButtonGroup} from '@mui/material';
 
 function ChooseCategories({ recipe, setRecipe }) {
   const [categoriesList, setCategoriesList] = useState([{ id: 1, name: "aaa" }, { id: 2, name: "bbbb" }, { id: 3, name: "33ccc" }, { id: 4, name: "dddddddd4 ddd" }, { id: 5, name: "555" }, { id: 6, name: "666" }]);

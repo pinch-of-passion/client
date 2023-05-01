@@ -1,5 +1,5 @@
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/joy/IconButton';
+import {IconButton} from '@mui/material';
 import AspectRatio from '@mui/joy/AspectRatio';
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import axios from 'axios';
@@ -23,11 +23,13 @@ const ApiCard = ({ recipe, setRefresh }) => {
                 variant="solid"
                 color="danger"
                 sx={{
-                    position: 'absolute',
+                    //position: 'absolute',
                     zIndex: 2,
                     borderRadius: '50%',
-                    right: '1rem',
-                    bottom: 0,
+                    left: '17rem',
+                    bottom: 45,
+                    backgroundColor:"#d3232f",
+                    color:"#ffffff",
                     transform: 'translateY(50%)',
                 }}
                 onClick={() => { navigate(`/editRecipe?recipeId=${recipe.id}`) }}
@@ -39,11 +41,13 @@ const ApiCard = ({ recipe, setRefresh }) => {
                 variant="solid"
                 color="danger"
                 sx={{
-                    position: 'absolute',
+                    //position: 'absolute',
                     zIndex: 2,
                     borderRadius: '50%',
-                    right: '4rem',
-                    bottom: 0,
+                    left: '11rem',
+                    bottom: 45,
+                    backgroundColor:"#d3232f",
+                    color:"#ffffff",
                     transform: 'translateY(50%)',
                 }}
                 onClick={() => {deleteRecipe(recipe.id) }}

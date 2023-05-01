@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
-import { Stack, Paper, TextField, Divider, Autocomplete } from '@mui/material';
-import Input from '@mui/joy/Input';
+import { Stack, Paper, Autocomplete, TextField, Divider } from '@mui/material';
+import {Input} from '@mui/material';
 import SelectedFilter from './SelectedFilter';
-import { red } from '@mui/material/colors';
 
 function Filters({ where, setWhere }) {
 
@@ -29,6 +28,7 @@ function Filters({ where, setWhere }) {
     fetchData()
   }, [])
 
+  
   return (
     <Paper elevation={16}
       sx={{
@@ -44,7 +44,7 @@ function Filters({ where, setWhere }) {
       }}>
       <h1>filter</h1>
       <div>
-        <Input placeholder="something yummy is coming..." variant="outlined" color="danger" sx={{ margin: 5 }}
+        <Input placeholder="something yummy is coming..." variant="outlined"  sx={{ margin: 5,width:"50%" }}
           onChange={event => setWhere({ ...where, name: event.target.value })}
         />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >

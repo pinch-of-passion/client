@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import RecipeCard from './RecipeCard'
 import { Box, Pagination, Paper } from '@mui/material';
 import axios from "axios"
 import RecipesGrid from './RecipesGrid';
 import Filters from './Filters';
+import { useLocation,  } from 'react-router-dom';
 
 
 const SearchRecipe = ({ src }) => {
-
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
     const [recipes, setRecipes] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [page, setPage] = useState(1);
@@ -43,6 +44,7 @@ const SearchRecipe = ({ src }) => {
 
     useEffect(() => {
         async function fetchData() {
+            // const name=
             const url = generateSpoonacularUrl()
             const ans = await axios.get(url)
             setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));

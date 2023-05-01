@@ -11,7 +11,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 const Logout = () => {
 
   const { logout } = useContext(AuthContext);
-  debugger
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
@@ -41,11 +40,7 @@ const Logout = () => {
 
   return (
   <>
-  <h1>aaaa</h1>
-    <br/>
-    <br/>
-    <br/>
-    <Button variant="contained" onClick={handleClickOpen}>Logout</Button>
+    <Button onClick={handleClickOpen}>Logout</Button>
     <Dialog
     open={open}
     onClose={handleClose}

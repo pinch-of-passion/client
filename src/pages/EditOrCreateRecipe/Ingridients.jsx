@@ -1,5 +1,4 @@
-import { Typography } from '@mui/joy';
-import { Autocomplete, FormGroup, IconButton, Paper, TextField } from '@mui/material';
+import { TextField, Typography, FormGroup, Paper, IconButton, Autocomplete } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -39,7 +38,7 @@ function Ingridients({ recipe, setRecipe }) {
 
     const handleRemoveIngredient = (index) => {
         if (recipe.ingredients.length === 1)
-            setIngredients([{ qty: 0, measuringUtensilId: '', ingredientId: '' ,meta:''}]);
+            setIngredients([{ qty: 0, measuringUtensilId: '', ingredientId: '', meta: '' }]);
 
         else {
             recipe.ingredients.splice(index, 1);
@@ -75,6 +74,7 @@ function Ingridients({ recipe, setRecipe }) {
                     />
                     <Autocomplete
                         options={ingredientsList}
+                        required
                         value={ingredient.ingredientId ? ingredientsList.find((i) => i.id === ingredient.ingredientId) : null}
                         getOptionLabel={(option) => option.name}
                         clearOnEscape
@@ -90,6 +90,7 @@ function Ingridients({ recipe, setRecipe }) {
                         value={ingredient.meta}
                         label="meta "
                         variant="standard"
+                        required
                         onChange={(event) => {
                             recipe.ingredients[index].meta = event.target.value;
                             setIngredients(recipe.ingredients);

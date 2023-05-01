@@ -1,15 +1,18 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Box, Typography } from '@mui/joy';
+import { Typography, Button, Paper, Container, TextField, Box } from '@mui/material';
+import { LoadingButton, ToggleButton, ToggleButtonGroup } from '@mui/lab';
+import { FcAddImage } from "react-icons/fc";
+import { Form } from "react-router-dom";
+import { borderRadius } from "@mui/system";
+import axios from "axios"
+import { useEffect, useState } from "react"
+
 import Image from './Image';
-import { Paper, TextField } from '@mui/material';
 import Ingridients from './Ingridients';
 import Steps from './Steps';
 import DifficultySelector from './DifficultySelector';
 import ChooseCategories from './ChooseCategories';
 import ChooseTags from './ChooseTags';
-import { LoadingButton } from '@mui/lab';
 
 
 function EditOrCreateRecipe({action}) {
@@ -73,7 +76,7 @@ function EditOrCreateRecipe({action}) {
             <button onClick={() => { debugger }}>debbuger</button>
             <Typography variant="h3" align="center" margin={3} color="danger">create a new recipe</Typography>
             <Image recipe={recipe} setRecipe={setRecipe}></Image>
-            <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "98", sm: "80%", md: "70%" } }}>
+            <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "90", sm: "80%", md: "70%" } }}>
                 <Typography variant="h6">recipe name</Typography>
                 <TextField
                     onChange={(e) => setRecipe({ ...recipe, name: e.target.value })}
@@ -137,10 +140,10 @@ function EditOrCreateRecipe({action}) {
             </Paper>
             <Ingridients recipe={recipe} setRecipe={setRecipe} />
             <Steps recipe={recipe} setRecipe={setRecipe} />
-            <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "98", sm: "80%", md: "70%" } }}>
+            <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "90", sm: "80%", md: "70%" } }}>
                 <ChooseCategories recipe={recipe} setRecipe={setRecipe} />
                 <ChooseTags recipe={recipe} setRecipe={setRecipe} />
-            </Paper>
+            </Paper> 
             <LoadingButton
                 size="large"
                 loading={loading}

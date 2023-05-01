@@ -1,4 +1,4 @@
-import IconButton from '@mui/joy/IconButton';
+import {IconButton} from '@mui/material';
 import Favorite from '@mui/icons-material/Favorite';
 const SpoonacularCard = ({ image }) => {
 
@@ -8,11 +8,13 @@ const SpoonacularCard = ({ image }) => {
                 variant="solid"
                 color="danger"
                 sx={{
-                    position: 'absolute',
+                    //position: 'absolute',
                     zIndex: 2,
                     borderRadius: '50%',
-                    right: '1rem',
-                    bottom: 0,
+                    left: '17rem',
+                    bottom: 45,
+                    backgroundColor:"#d3232f",
+                    color:"#ffffff",
                     transform: 'translateY(50%)',
                 }}
             >
