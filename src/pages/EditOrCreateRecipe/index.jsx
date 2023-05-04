@@ -44,7 +44,7 @@ function EditOrCreateRecipe({ action }) {
                     preperingTime: recipeToEdit.preperingTime,
                     serves: recipeToEdit.serves,
                     difficult: recipeToEdit.difficult,
-                    ingredients: recipeToEdit.ingredients.map(i => ({ qty: i.recipeIngredient.qty, measuringUtensilId: i.recipeIngredient.measuringUtensilId, ingredientId: i.id, meta: i.recipeIngredient.meta })),
+                    ingredients: recipeToEdit.ingredients.map(i => ({ qty: i.qty, measuringUtensilId: i.measuringUtensilId, ingredientId: i.ingredientId, meta: i.meta })),
                     steps: recipeToEdit.steps.map(step => ({ direction: step.direction, number: step.number })),
                     img: recipeToEdit.img,
                     tags: recipeToEdit.tags.map(tag => tag.id),

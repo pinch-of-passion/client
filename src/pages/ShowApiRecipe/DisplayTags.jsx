@@ -6,7 +6,7 @@ const DisplayTags = ({ tags }) => {
 
     return (
         <Box
-            // component={"div"}
+            component={"div"}
             sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -23,7 +23,7 @@ const DisplayTags = ({ tags }) => {
             {
                 tags?.map(category => (
                     <Chip
-                        label={category}
+                        label={category.name}
                         sx={{ backgroundColor: "#E5D3D3", }}
                     />
                 ))}

@@ -39,10 +39,10 @@ function ShowSpoonacularRecipe() {
                 <Typography variant='h11'>{recipe?.summary}</Typography><br/>
                 <img src={recipe?.image}></img>
                 <Details recipe={recipe} />
-                {recipe?.extendedIngredients && <DisplayIngredients ingredients={recipe?.extendedIngredients}></DisplayIngredients>}
+                {recipe?.extendedIngredients.length>0 && <DisplayIngredients ingredients={recipe?.extendedIngredients}></DisplayIngredients>}
                 {recipe?.analyzedInstructions.length > 0 && <DisplayInstruction steps={recipe?.analyzedInstructions}></DisplayInstruction>}
                 {recipe?.diets.length > 0 && <DisplayTags tags={recipe?.diets}></DisplayTags>}
-                {recipe?.dishTypes > 0 && <DisplayCategories categories={recipe?.dishTypes}></DisplayCategories>}
+                {recipe?.dishTypes.length>0 > 0 && <DisplayCategories categories={recipe?.dishTypes}></DisplayCategories>}
             </Paper>  
         </>
     )

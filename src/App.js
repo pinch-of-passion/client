@@ -10,6 +10,7 @@ import Nav from './components/Nav';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AuthContextProvider } from "./context/authContext";
 import ShowSpoonacularRecipe from "./pages/ShowSpoonacularRecipe";
+import ShowApiRecipe from "./pages/ShowApiRecipe";
 
 const theme = createTheme({
   palette: {
@@ -41,6 +42,7 @@ function App() {
               <Route path='/CreateRecipe' element={<EditOrCreateRecipe action="create" />} />
               <Route path='/EditRecipe' element={<EditOrCreateRecipe action="edit" />} />
               <Route path='/spoonacular/show' element={<ShowSpoonacularRecipe/>} />
+              <Route path='/api/show' element={<ShowApiRecipe/>} />
             </Routes>
           </ThemeProvider>
         </Router>

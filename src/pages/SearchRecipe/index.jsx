@@ -42,12 +42,27 @@ const SearchRecipe = ({ src }) => {
         return url;
     }
 
+    const generateApiUrl = () => {
+        let url = `http://localhost:3600/api/recipe/`
+        // const { data: recipeToEdit } = await axios.get(`http://localhost:3600/api/recipe/${recipeId}`)
+        return url;
+    }
+
     useEffect(() => {
         async function fetchData() {
-            const url = generateSpoonacularUrl()
+            let url;
+            if (src=="spoonacular")
+                 url = generateSpoonacularUrl()
+            else
+                 url = generateApiUrl()
             const ans = await axios.get(url)
-            setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
-            setRecipes(ans.data.results)
+            if (src=="spoonacular"){
+                setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
+                setRecipes(ans.data.results)
+            }
+            else{
+                setRecipes(ans.data)
+            }
         }
         fetchData()
     }, [where, page, itemsPerPage, refresh]);

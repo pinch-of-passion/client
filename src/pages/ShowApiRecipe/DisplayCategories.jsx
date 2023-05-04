@@ -1,12 +1,14 @@
 import * as React from 'react';
-import LocalOfferRoundedIcon from '@mui/icons-material/LocalOfferRounded';
 import { Box, Chip } from '@mui/material';
 
-const DisplayTags = ({ tags }) => {
+
+
+const DisplayCategories = ({ categories }) => {
+    
 
     return (
         <Box
-            // component={"div"}
+            component={"div"}
             sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -20,15 +22,13 @@ const DisplayTags = ({ tags }) => {
                 },
             }}
         >
-            {
-                tags?.map(category => (
-                    <Chip
-                        label={category}
-                        sx={{ backgroundColor: "#E5D3D3", }}
-                    />
-                ))}
+            {categories?.map(category => (
+                <Chip
+                    label={category.name}
+                    sx={{ backgroundColor:"#E5D3D3",}}
+                />
+            ))}
         </Box>
     )
 }
-
-export default DisplayTags
+export default DisplayCategories;
