@@ -28,22 +28,22 @@ function ShowSpoonacularRecipe() {
             }
         }
         fetchData()
-        
+
     }, []);
 
     return (
         <>
             <LeftButtons recipe={recipe} />
             <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, }}>
-               <Typography variant='h3'>{recipe?.title}</Typography>
-                <Typography variant='h11'>{recipe?.summary}</Typography><br/>
+                <Typography variant='h3'>{recipe?.title}</Typography>
+                <Typography variant='h11'>{recipe?.summary}</Typography><br />
                 <img src={recipe?.image}></img>
                 <Details recipe={recipe} />
-                {recipe?.extendedIngredients.length>0 && <DisplayIngredients ingredients={recipe?.extendedIngredients}></DisplayIngredients>}
+                {recipe?.extendedIngredients.length > 0 && <DisplayIngredients ingredients={recipe?.extendedIngredients}></DisplayIngredients>}
                 {recipe?.analyzedInstructions.length > 0 && <DisplayInstruction steps={recipe?.analyzedInstructions}></DisplayInstruction>}
                 {recipe?.diets.length > 0 && <DisplayTags tags={recipe?.diets}></DisplayTags>}
-                {recipe?.dishTypes.length>0 > 0 && <DisplayCategories categories={recipe?.dishTypes}></DisplayCategories>}
-            </Paper>  
+                {recipe?.dishTypes.length > 0 > 0 && <DisplayCategories categories={recipe?.dishTypes}></DisplayCategories>}
+            </Paper>
         </>
     )
 }

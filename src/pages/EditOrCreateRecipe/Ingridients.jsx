@@ -29,7 +29,8 @@ function Ingridients({ recipe, setRecipe }) {
     }
 
     const handleAddIngredient = () => {
-        if (!recipe.ingredients[recipe.ingredients.length - 1].ingredientId)
+        debugger
+        if (recipe.ingredients?.length>0&& !recipe.ingredients[recipe.ingredients.length - 1].ingredientId)
             setAlert("Please select an ingredient");
 
         else

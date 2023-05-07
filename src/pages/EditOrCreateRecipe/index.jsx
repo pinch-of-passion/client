@@ -60,11 +60,28 @@ function EditOrCreateRecipe({ action }) {
 
     }, []);
 
+    const uploadImg=async(recipe) => {
+        if(recipe.img){
+            const formData = new FormData()
+            formData.append("file", recipe.img)
+            const {data}=await axios.post("http://localhost:3600/api/upload",formData)
+               if(data?.name){
+                debugger
+                 return data.name;
+                //setPicture(`http://localhost:3600/images/${data.name}`)
+               }
+        }
+        return null;
+      }
+
     const handleAddRecipe = async (newRecipe) => {
         //setLoading(true);
 
         let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
-        const recipe = await axios.post("http://localhost:3600/api/recipe", newRecipe, config);
+        const image=await uploadImg(newRecipe)
+        newRecipe.img=image;
+        debugger
+        const recipe = await axios.post("http://localhost:3600/api/recipe", newRecipe, config.headers);
         debugger
         setLoading(false)
         alert("added")

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
 import { Stack, Paper, Autocomplete, TextField, Divider } from '@mui/material';
-import {Input} from '@mui/material';
+import { Input } from '@mui/material';
 import SelectedFilter from './SelectedFilter';
 
 function Filters({ where, setWhere }) {
@@ -28,7 +28,7 @@ function Filters({ where, setWhere }) {
     fetchData()
   }, [])
 
-  
+
   return (
     <Paper elevation={16}
       sx={{
@@ -44,7 +44,7 @@ function Filters({ where, setWhere }) {
       }}>
       <h1>filter</h1>
       <div>
-        <Input value={where.name} placeholder="something yummy is coming..." variant="outlined"  sx={{ margin: 5,width:"50%" }}
+        <Input value={where.name} placeholder="something yummy is coming..." variant="outlined" sx={{ margin: 5, width: "50%" }}
           onChange={event => setWhere({ ...where, name: event.target.value })}
         />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
@@ -58,9 +58,11 @@ function Filters({ where, setWhere }) {
             renderInput={(params) => (
               <TextField {...params} label="includeIngredients" placeholder="includeIngredients" />
             )}
-            InputProps={{style:{
-              color:"#ff0000"
-            }}}
+            InputProps={{
+              style: {
+                color: "#ff0000"
+              }
+            }}
             sx={{ width: '350px', borderColor: "#ff0000" }}
             onChange={(event, values) => { setWhere({ ...where, includeIngredients: values }) }}
           />
@@ -114,8 +116,9 @@ function Filters({ where, setWhere }) {
             onChange={(event, value) => { debugger; setWhere({ ...where, maxReadyTime: value }) }}
           />
         </Stack>
-
-        {<Divider variant="middle" sx={{ padding: 2 }} />}
+        {(where.includeIngredients?.length != 0 || where.excludeIngredients?.length != 0 || where.setTypes?.length != 0 || where.selectedDiets?.length != 0) &&
+          <Divider variant="middle" sx={{ padding: 2 }} />
+        }
         <div style={{ flexWrap: "wrap", justifyContent: "flex-start", display: "flex" }}> {where.includeIngredients?.length != 0 &&
           <SelectedFilter name="includeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
           {where.excludeIngredients?.length != 0 &&
