@@ -10,8 +10,8 @@ const handelClick=()=>{
     if(src=="spoonacular")
         navigate(`/spoonacular/show?recipeId=${recipe?.id}`)
     else 
-        // navigate(`/Api/show?recipeId=${recipe?.id}`)
-        navigate(`/Api/show?recipeId=1`)
+        navigate(`/Api/show?recipeId=${recipe?.id}`)
+        // navigate(`/Api/show?recipeId=1`)
 
 }
     return (
@@ -23,9 +23,10 @@ const handelClick=()=>{
             <div>
                 <div ratio="1.75">
                     <img border="none" outline="none"
-                        src={recipe.image?recipe.image:"https://spoonacular.com/recipeImages/641395-312x231.jpg"}
+                        src={recipe.image?recipe.image:recipe.img?`http://localhost:3600/images/${recipe.img}`:"https://spoonacular.com/recipeImages/641395-312x231.jpg"}
                         loading="lazy"
                         alt=""
+                        style={{width:312,height:231}}
                     />
                 </div>
                 {src == "api" ? <ApiCard setRefresh={setRefresh} recipe={recipe}/> : <SpoonacularCard recipe={recipe}/>}

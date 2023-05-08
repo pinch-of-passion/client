@@ -16,12 +16,12 @@ function ShowApiRecipe() {
     const queryParams = new URLSearchParams(location.search);
 
     useEffect(() => {
+        debugger;
         async function fetchData(recipeId) {
-            const ans = await axios.get(`https://localhost:3600/api/recipe/${recipeId}`)
+            const ans = await axios.get(`http://localhost:3600/api/recipe/${recipeId}`)
             if (ans.data) {
                 setRecipe(ans.data);
             }
-
         }
         if (queryParams.get("recipeId"))
             fetchData(queryParams.get("recipeId"))
@@ -33,12 +33,12 @@ function ShowApiRecipe() {
             <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, }}>
                 <Typography variant='h3'>{recipe?.name}</Typography>
                 <Typography variant='h11'>{recipe?.description}</Typography>
-                <img src={recipe?.img}></img>
+                <img src={`http://localhost:3600/images/${recipe.img}`} sx={{width:2}}></img>
                 <Details recipe={recipe} />
-                {recipe?.ingredients.length>0 && <DisplayIngredients ingredients={recipe?.ingredients}></DisplayIngredients>}
-                {recipe?.steps.length > 0 && <DisplayInstruction steps={recipe?.steps}></DisplayInstruction>}
-                {recipe?.tags.length > 0 && <DisplayTags tags={recipe?.tags}></DisplayTags>}
-                {recipe?.categories.length > 0 && <DisplayCategories categories={recipe?.categories}></DisplayCategories>}
+                {recipe?.ingredients?.length>0 && <DisplayIngredients ingredients={recipe?.ingredients}></DisplayIngredients>}
+                {recipe?.steps?.length > 0 && <DisplayInstruction steps={recipe?.steps}></DisplayInstruction>}
+                {recipe?.tags?.length > 0 && <DisplayTags tags={recipe?.tags}></DisplayTags>}
+                {recipe?.categories?.length > 0 && <DisplayCategories categories={recipe?.categories}></DisplayCategories>}
 
             </Paper>
         </>

@@ -57,8 +57,9 @@ const SearchRecipe = ({ src }) => {
                  url = generateApiUrl()
             const ans = await axios.get(url)
             if (src=="spoonacular"){
-                setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
                 setRecipes(ans.data.results)
+                setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
+                // setPage(1);
             }
             else{
                 setRecipes(ans.data)
@@ -74,6 +75,7 @@ const SearchRecipe = ({ src }) => {
     return (
         <>
             <Filters where={where} setWhere={setWhere} />
+            <button onClick={()=>{debugger}}>debbuger</button>
             <RecipesGrid src={src} recipes={recipes} setRefresh={setRefresh} />
             <Pagination count={totalPages} page={page} onChange={(event, page) => { setPage(page) }} />
         </>

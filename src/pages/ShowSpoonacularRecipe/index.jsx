@@ -9,6 +9,15 @@ import DisplayInstruction from "./DisplayInstruction"
 import LeftButtons from './LeftButtons';
 import Details from './Details';
 import { useLocation } from 'react-router-dom';
+// import parse from 'react-html-parser';
+// import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
+
+
+
+
+
+
 
 function ShowSpoonacularRecipe() {
     const location = useLocation();
@@ -23,8 +32,6 @@ function ShowSpoonacularRecipe() {
                 if (ans.data) {
                     setRecipe(ans.data);
                 }
-                // const tmpSummary = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/summary?apiKey=${process.env.REACT_APP_API_KEY3}`)
-                // setSummary(tmpSummary.data.summary);
             }
         }
         fetchData()
@@ -33,16 +40,19 @@ function ShowSpoonacularRecipe() {
 
     return (
         <>
+
             <LeftButtons recipe={recipe} />
             <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, }}>
-                <Typography variant='h3'>{recipe?.title}</Typography>
-                <Typography variant='h11'>{recipe?.summary}</Typography><br />
-                <img src={recipe?.image}></img>
-                <Details recipe={recipe} />
-                {recipe?.extendedIngredients.length > 0 && <DisplayIngredients ingredients={recipe?.extendedIngredients}></DisplayIngredients>}
-                {recipe?.analyzedInstructions.length > 0 && <DisplayInstruction steps={recipe?.analyzedInstructions}></DisplayInstruction>}
-                {recipe?.diets.length > 0 && <DisplayTags tags={recipe?.diets}></DisplayTags>}
-                {recipe?.dishTypes.length > 0 > 0 && <DisplayCategories categories={recipe?.dishTypes}></DisplayCategories>}
+                <Typography variant='h3' sx={{m:2}}>{recipe?.title}</Typography>
+                
+                {/* <Typography variant='h11' sx={{m:2}}>{parse(recipe?.summary)}</Typography><br /> */}
+
+                <img src={recipe?.image} sx={{width:500}}></img>
+                <Details recipe={recipe} ></Details>
+                {recipe.extendedIngredients?.length > 0 && <DisplayIngredients ingredients={recipe?.extendedIngredients}></DisplayIngredients>}
+                {recipe.analyzedInstructions?.length > 0 && <DisplayInstruction steps={recipe?.analyzedInstructions}></DisplayInstruction>}
+                {recipe.diets?.length > 0 && <DisplayTags tags={recipe?.diets}></DisplayTags>}
+                {recipe.dishTypes?.length > 0 > 0 && <DisplayCategories categories={recipe?.dishTypes}></DisplayCategories>}
             </Paper>
         </>
     )
