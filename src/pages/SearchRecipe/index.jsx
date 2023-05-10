@@ -66,7 +66,7 @@ const SearchRecipe = ({ src }) => {
             }
         }
         fetchData()
-    }, [where, page, itemsPerPage, refresh]);
+    }, [where, page, itemsPerPage, refresh,src]);
 
     useEffect(() => {
         setWhere({ ...where, name:queryParams.get("name")})
@@ -75,7 +75,7 @@ const SearchRecipe = ({ src }) => {
     return (
         <>
             <Filters where={where} setWhere={setWhere} />
-            <button onClick={()=>{debugger}}>debbuger</button>
+            <button onClick={()=>{console.log(recipes);debugger}}>debbuger</button>
             <RecipesGrid src={src} recipes={recipes} setRefresh={setRefresh} />
             <Pagination count={totalPages} page={page} onChange={(event, page) => { setPage(page) }} />
         </>

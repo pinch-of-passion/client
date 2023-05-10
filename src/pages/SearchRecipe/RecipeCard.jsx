@@ -1,19 +1,29 @@
 import * as React from 'react';
-import {Card,Divider,Typography,AspectRatio} from '@mui/material';
+import { Card, Divider, Typography, AspectRatio } from '@mui/material';
 import ApiCard from './ApiCard';
 import SpoonacularCard from './SpoonacularCard';
 import { useNavigate } from 'react-router-dom';
 
-const RecipeCard = ({ recipe, src, setRefresh}) => {
-    const navigate=useNavigate()
-const handelClick=()=>{
-    if(src=="spoonacular")
-        navigate(`/spoonacular/show?recipeId=${recipe?.id}`)
-    else 
-        navigate(`/Api/show?recipeId=${recipe?.id}`)
+const RecipeCard = ({ recipe, src, setRefresh }) => {
+    const navigate = useNavigate()
+    const handelClick = () => {
+        if (src == "spoonacular")
+            navigate(`/spoonacular/show?recipeId=${recipe?.id}`)
+        else
+            navigate(`/Api/show?recipeId=${recipe?.id}`)
         // navigate(`/Api/show?recipeId=1`)
 
-}
+    }
+    const getRecipeName = () => {
+        let name;
+        if (src == "api")
+            name = recipe?.name;
+        else name = recipe?.title
+        if (name.length > 65)
+            return name.substring(0, 65) + "...";
+        return name;
+    }
+    
     return (
         <Card onClick={handelClick} variant="outlined"
             sx={{
@@ -23,17 +33,17 @@ const handelClick=()=>{
             <div>
                 <div ratio="1.75">
                     <img border="none" outline="none"
-                        src={recipe.image?recipe.image:recipe.img?`http://localhost:3600/images/${recipe.img}`:"https://spoonacular.com/recipeImages/641395-312x231.jpg"}
+                        src={recipe.image ? recipe.image : recipe.img ? `http://localhost:3600/images/${recipe.img}` : `https://spoonacular.com/recipeImages/${recipe?.id}-312x231.jpg`}
                         loading="lazy"
                         alt=""
-                        style={{width:312,height:231}}
+                        style={{ width: 312, height: 231 }}
                     />
                 </div>
-                {src == "api" ? <ApiCard setRefresh={setRefresh} recipe={recipe}/> : <SpoonacularCard recipe={recipe}/>}
+                {src == "api" ? <ApiCard setRefresh={setRefresh} recipe={recipe} /> : <SpoonacularCard recipe={recipe} />}
             </div>
             <div style={{ height: 50 }}>
                 <Typography level="h4" sx={{ fontSize: '32', mt: 2, fontWeight: '10' }}>
-                    {src == "api" ? recipe.name : recipe?.title}
+                    {getRecipeName()}
                 </Typography>
             </div>
             <Divider />

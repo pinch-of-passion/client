@@ -5,7 +5,7 @@ import Uploader from "./Uploader"
 import { Button } from '@mui/material'
 import { FcAddImage } from 'react-icons/fc'
 // import RecipesGrid from "../recipe/recipeGrid"
-
+import CarouselImg from './carousel'
 const Home = () => {
   const [picture, setPicture] = useState("")
   const [file, setFile] = useState("")
@@ -51,6 +51,7 @@ const Home = () => {
                 <button onClick={() => { setPicture(null) }}>replace</button>
             </div>
         }
+        <CarouselImg></CarouselImg>
         <button onClick={uploadImg}>add</button>
     {/* <Uploader file={picture} setFile={setPicture} /> */}
   </>
