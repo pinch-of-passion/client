@@ -47,7 +47,6 @@ function Filters({ where, setWhere }) {
         />
         <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
           <Autocomplete
-            color="#ff0000"
             multiple
             limitTags={0}
             options={ingredients}
@@ -56,12 +55,7 @@ function Filters({ where, setWhere }) {
             renderInput={(params) => (
               <TextField {...params} label="includeIngredients" placeholder="includeIngredients" />
             )}
-            InputProps={{
-              style: {
-                color: "#ff0000"
-              }
-            }}
-            sx={{ width: '350px', borderColor: "#ff0000" }}
+            sx={{ width: '350px'}}
             onChange={(event, values) => { setWhere({ ...where, includeIngredients: values }) }}
           />
           <Autocomplete

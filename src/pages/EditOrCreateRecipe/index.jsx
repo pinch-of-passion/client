@@ -71,8 +71,7 @@ function EditOrCreateRecipe({ action }) {
     const handleAddRecipe = async () => {
         let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
         const image=await uploadImg(recipe)
-        recipe.img=image;
-        debugger    
+        recipe.img=image;    
         const newRecipe = await axios.post("http://localhost:3600/api/recipe", recipe);
         navigate(`/Api/show?recipeId=${newRecipe?.data?.data?.id}`)
     }
@@ -97,7 +96,6 @@ function EditOrCreateRecipe({ action }) {
 
     return (
         <Box component={"form"} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={() => {  }}>debbuger</button>
             <Typography variant="h2" align="center" margin={3} color="danger">
                 {action == "create" ? "Create a new recipe" : "Edit your recipe"}
             </Typography>

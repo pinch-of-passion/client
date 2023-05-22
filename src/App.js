@@ -15,11 +15,16 @@ import ShowApiRecipe from "./pages/ShowApiRecipe";
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#cd5c5c',
+      main: '#ba8786',
+      // main: '#d4a8a8',
     },
     secondary: {
-      main: '#f44336',
+      main: '#a66d6d',
     },
+    
+  },
+  typography: {
+    fontFamily:'"Handlee", cursive',
   },
 });
 

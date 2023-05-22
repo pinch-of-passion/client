@@ -9,11 +9,7 @@ import InputBase from '@mui/material/InputBase';
 import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import { useContext } from "react";
 import { CgAddR } from "react-icons/cg";
@@ -29,7 +25,6 @@ const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
-    color: "#ff0000",
     '&:hover': {
         backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
@@ -56,7 +51,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     color: 'inherit',
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -69,7 +63,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Nav() {
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const {currentUser} = useContext(AuthContext);
+    const { currentUser } = useContext(AuthContext);
     const [searchText, setSearchText] = React.useState("");
     const navigate = useNavigate();
 
@@ -104,22 +98,22 @@ export default function Nav() {
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
-            {currentUser &&<>
-            <MenuItem>
-                <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/spoonacular/Search") ;handleMobileMenuClose()}}><BsSearch style={{ fontSize: 22 }} />Search</Button>
-            </MenuItem>
-            <MenuItem>
-                <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/createRecipe") ;handleMobileMenuClose()}}><CgAddR style={{ fontSize: 25 }} />Create</Button>
-            </MenuItem>
-            <MenuItem>
-                <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/Profil") ;handleMobileMenuClose()}}><GiCook style={{ fontSize: 25 }} />{currentUser.name}</Button>
-            </MenuItem>
+            {currentUser && <>
+                <MenuItem>
+                    <Button onClick={() => { navigate("/spoonacular/Search"); handleMobileMenuClose() }}><BsSearch style={{ fontSize: 22 }} />Search</Button>
+                </MenuItem>
+                <MenuItem>
+                    <Button onClick={() => { navigate("/createRecipe"); handleMobileMenuClose() }}><CgAddR style={{ fontSize: 25 }} />Create</Button>
+                </MenuItem>
+                <MenuItem>
+                    <Button onClick={() => { navigate("/Profil"); handleMobileMenuClose() }}><GiCook style={{ fontSize: 25 }} />{currentUser.name}</Button>
+                </MenuItem>
             </>
             }
-            {!currentUser&& 
-            <MenuItem>
-            <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/login") ;handleMobileMenuClose()}}>Sign In</Button>
-            </MenuItem>
+            {!currentUser &&
+                <MenuItem>
+                    <Button onClick={() => { navigate("/login"); handleMobileMenuClose() }}>Sign In</Button>
+                </MenuItem>
             }
         </Menu>
     );
@@ -130,17 +124,17 @@ export default function Nav() {
                 <Toolbar>
                     <Typography
                         variant="h6"
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' }, color: "#ff0000", }}
+                        sx={{ display: { xs: 'none', sm: 'block' }, color: '#ba8786' }}
                         onClick={() => { navigate("/") }}
                     >
                         CookWebsite
-                    </Typography> 
+                    </Typography>
                     <Search>
                         <SearchIconWrapper>
-                            <SearchIcon onClick={() => { navigate("/spoonacular/Search") }} />
+                            <SearchIcon sx={{ color: '#ba8786' }} onClick={() => { navigate("/spoonacular/Search") }} />
                         </SearchIconWrapper>
                         <StyledInputBase
+                            sx={{ color: '#ba8786' }}
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
                             value={searchText}
@@ -150,13 +144,13 @@ export default function Nav() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        {!currentUser && <Button sx={{ color: "#ff0000" }} onClick={() => { navigate("/login") }}>Sign In</Button>}
+                        {!currentUser && <Button onClick={() => { navigate("/login") }}>Sign In</Button>}
                         {currentUser && <>
-                            <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/Api/Search") }}><BsSearch style={{ fontSize: 22 }} />Search api</Button>
-                            <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/spoonacular/Search") }}><BsSearch style={{ fontSize: 22 }} />Search</Button>
-                            <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/createRecipe") }}><CgAddR style={{ fontSize: 25 }} />Create</Button>
-                            <Button style={{ color: "#ff0000" }} onClick={() => { navigate("/Profil") }}><GiCook style={{ fontSize: 25 }} />{currentUser.name}</Button>
-                            <Button style={{ color: "#ff0000" }} onClick={() => {  }}><Logout/></Button>
+                            <Button onClick={() => { navigate("/Api/Search") }}><BsSearch style={{ fontSize: 22 }} />Search api</Button>
+                            <Button onClick={() => { navigate("/spoonacular/Search") }}><BsSearch style={{ fontSize: 22 }} />Search</Button>
+                            <Button onClick={() => { navigate("/createRecipe") }}><CgAddR style={{ fontSize: 25 }} />Create</Button>
+                            <Button onClick={() => { navigate("/Profil") }}><GiCook style={{ fontSize: 25 }} />{currentUser.name}</Button>
+                            <Button onClick={() => { }}><Logout /></Button>
                         </>
                         }
                     </Box>
@@ -169,7 +163,7 @@ export default function Nav() {
                             onClick={handleMobileMenuOpen}
                             color="inherit"
                         >
-                            <MoreIcon sx={{ color: "#ff0000" }} />
+                            <MoreIcon />
                         </IconButton>
                     </Box>
                 </Toolbar>
