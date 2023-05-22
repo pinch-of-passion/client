@@ -51,7 +51,7 @@ function Ingridients({ recipe, setRecipe }) {
         <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "98%", sm: "80%", md: "70%" } }}>
             <Typography htmlFor="recipeIngredients" shrink variant="h4">ingredients:</Typography>
             {recipe.ingredients?.map((ingredient, index) => (
-                <FormGroup row key={index} sx={{ '& .MuiTextField-root': { m: 1, width: '20ch', display: 'flex', flexDirection: 'row', } }}>
+                <FormGroup row key={index} sx={{ '& .MuiTextField-root':{ m: 1, width: '20ch', display: 'flex', flexDirection: 'row', } }}>
                     <TextField
                         value={ingredient.qty}
                         label="qty"
@@ -75,7 +75,7 @@ function Ingridients({ recipe, setRecipe }) {
                     />
                     <Autocomplete
                         options={ingredientsList}
-                        required
+                        required={true}
                         value={ingredient.ingredientId ? ingredientsList.find((i) => i.id === ingredient.ingredientId) : null}
                         getOptionLabel={(option) => option.name}
                         clearOnEscape
@@ -87,7 +87,6 @@ function Ingridients({ recipe, setRecipe }) {
                         }}
                     />
                     <TextField
-                        id={`qty-${index}}`}
                         value={ingredient.meta}
                         label="meta "
                         variant="standard"

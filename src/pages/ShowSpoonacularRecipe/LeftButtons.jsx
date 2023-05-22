@@ -39,7 +39,7 @@ function LeftButtons({ recipe }) {
             }}>
                 <ContentCopyIcon />
             </IconButton>
-            <IconButton onClick={() => { }}>
+            <IconButton onClick={() => { window.print()}}>
                 <PrintRoundedIcon />
             </IconButton>
             <Snackbar

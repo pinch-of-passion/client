@@ -22,7 +22,7 @@ const Root = styled('div')(({ theme }) => ({
 const DisplayInstruction = ({ steps }) => {
 
     return (
-        <><Typography variant='h3' >Directions:</Typography>
+        <><Typography variant='h4'>Directions:</Typography>
             <Box sx={{
                 marginRight: 'auto',
                 marginLeft: 'auto',

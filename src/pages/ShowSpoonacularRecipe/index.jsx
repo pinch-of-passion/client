@@ -10,7 +10,7 @@ import LeftButtons from './LeftButtons';
 import Details from './Details';
 import { useLocation } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
-import RecipesGrid from '../SearchRecipe/RecipesGrid';
+import RecipesGrid from '../../components/RecipesGrid';
 // import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 
@@ -35,7 +35,7 @@ function ShowSpoonacularRecipe() {
                 if (ans.data) {
                     setRecipe(ans.data);
                 }
-                const rnd=await axios.get(`https://api.spoonacular.com/recipes/${queryParams.get("recipeId")}/similar?number=6&apiKey=${process.env.REACT_APP_API_KEY3}`)
+                const rnd=await axios.get(`https://api.spoonacular.com/recipes/${queryParams.get("recipeId")}/similar?number=4&apiKey=${process.env.REACT_APP_API_KEY3}`)
                 if (rnd.data){
                     setSimilarRecipe(rnd.data);
                 }
@@ -43,7 +43,6 @@ function ShowSpoonacularRecipe() {
         }
         fetchData()
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-
     }, [queryParams.get("recipeId")]);
 
     return (

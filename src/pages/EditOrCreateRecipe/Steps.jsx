@@ -1,8 +1,8 @@
-import { Alert, Paper, TextField ,IconButton,Stack} from '@mui/material';
+import { Alert, Paper, TextField, IconButton, Stack, Box } from '@mui/material';
 import React, { useState } from 'react'
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Typography} from '@mui/material';
+import { Typography } from '@mui/material';
 
 
 function Steps({ recipe, setRecipe, }) {
@@ -14,26 +14,23 @@ function Steps({ recipe, setRecipe, }) {
         else
             setSteps([...recipe.steps, { number: recipe.steps.length + 1, direction: '' }]);
     }
-    
+
     const deleteStep = (stepNumberToDelete) => {
         if (recipe.steps.length === 1)
             setSteps([{ number: 1, direction: '' }]);
         else
             setSteps(recipe.steps.filter(s => s.number !== stepNumberToDelete).map((step, index) => ({ ...step, number: index + 1, })));
-    } 
-    
+    }
+
     const setSteps = (steps) => {
-        setRecipe({...recipe, steps})
+        setRecipe({ ...recipe, steps })
     }
     return (
         <Paper elevation={16} sx={{ my: 2, p: { xs: 6, md: 3 }, width: { xs: "98%", sm: "80%", md: "70%" } }}>
-        <Typography shrink variant="h4">steps:</Typography>
+            <Typography shrink variant="h4">steps:</Typography>
             {recipe.steps?.map((step, index) => {
                 return (
-                    <Stack
-                        direction={{ xs: 'column', sm: 'row'}}
-                        sx={{margin:2}}
-                        >
+                     <>
                         <TextField
                             value={step.direction}
                             key={step.number}
@@ -48,9 +45,9 @@ function Steps({ recipe, setRecipe, }) {
                                 setSteps(values);
                             }}
                             sx={{ width: "70%" }}
-                        ></TextField>
+                        />
                         <IconButton aria-label="delete" size="small"><DeleteIcon onClick={() => deleteStep(step.number)} /></IconButton>
-                    </Stack>
+                    </>
                 )
             })}
             <IconButton aria-label="add" size="large"><AddIcon fontSize="large" onClick={addStep} /></IconButton>

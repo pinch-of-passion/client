@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios"
-import { Stack, Paper, Autocomplete, TextField, Divider } from '@mui/material';
-import { Input } from '@mui/material';
+import { Stack, Paper, Autocomplete, TextField, Divider, Input, Typography} from '@mui/material';
 import SelectedFilter from './SelectedFilter';
 
 function Filters({ where, setWhere }) {
 
-  const [ingredients, setiIngredients] = useState([{ id: 1, name: "sugar" }, { id: 2, name: "chocolate" }, { id: 3, name: "water" }]);
-  const [types, setTypes] = useState([{ id: 1, name: "drink" }, { id: 2, name: "super" }, { id: 3, name: "brakfast" }]);
-  const [diets, setDiets] = useState([{ id: 1, name: "gluten-free" }, { id: 2, name: "daire-free" }, { id: 3, name: "diet" }]);
+  const [ingredients, setiIngredients] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [diets, setDiets] = useState([]);
 
   useEffect(() => {
 
@@ -27,8 +26,19 @@ function Filters({ where, setWhere }) {
     }
     fetchData()
   }, [])
-
-
+  
+  const maxReadyTimeOptions = [
+    { value: 15, name: "less then 15" },
+    { value: 30, name: "less then 30" },
+    { value: 45, name: "less then 45" },
+    { value: 60, name: "less then 60" },
+  ]
+  const style = {
+    multiple: true,
+    limitTags: 0,
+    sx: { width: "350px" }
+  }
+  
   return (
     <Paper elevation={16}
       sx={{
@@ -37,89 +47,81 @@ function Filters({ where, setWhere }) {
         borderRadius: 2,
         backgroundColor: '#e5d3d3',
         width: "90%",
-        // margin: 5,
-        padding: 2
+        padding: 2,
+        margin:2
       }}>
-      <h1>filter</h1>
-      <div>
-        <Input value={where.name} placeholder="something yummy is coming..." variant="outlined" sx={{ margin: 5, width: "50%" }}
-          onChange={event => setWhere({ ...where, name: event.target.value })}
+      <Typography variant="h4">filter</Typography>
+      <Input value={where.name} placeholder="something yummy is coming..." variant="outlined" sx={{ margin: 5, width: "50%" }}
+        onChange={event => setWhere({ ...where, name: event.target.value })}
+      />
+      <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
+        <Autocomplete
+          {...style}
+          options={ingredients}
+          getOptionLabel={(option) => option.name}
+          value={where.includeIngredients}
+          renderInput={(params) => (
+            <TextField {...params} label="includeIngredients" placeholder="includeIngredients" />
+          )}
+          onChange={(event, values) => { setWhere({ ...where, includeIngredients: values }) }}
         />
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={2} >
-          <Autocomplete
-            multiple
-            limitTags={0}
-            options={ingredients}
-            getOptionLabel={(option) => option.name}
-            value={where.includeIngredients}
-            renderInput={(params) => (
-              <TextField {...params} label="includeIngredients" placeholder="includeIngredients" />
-            )}
-            sx={{ width: '350px'}}
-            onChange={(event, values) => { setWhere({ ...where, includeIngredients: values }) }}
-          />
-          <Autocomplete
-            multiple
-            limitTags={0}
-            options={ingredients}
-            getOptionLabel={(option) => option.name}
-            value={where.excludeIngredients}
-            renderInput={(params) => (
-              <TextField {...params} label="exclude Ingredients" placeholder="exclude Ingredients" />
-            )}
-            sx={{ width: '350px' }}
-            onChange={(event, values) => { setWhere({ ...where, excludeIngredients: values }) }}
+        <Autocomplete
+          {...style}
+          options={ingredients}
+          getOptionLabel={(option) => option.name}
+          value={where.excludeIngredients}
+          renderInput={(params) => (
+            <TextField {...params} label="exclude Ingredients" placeholder="exclude Ingredients" />
+          )}
+          onChange={(event, values) => { setWhere({ ...where, excludeIngredients: values }) }}
 
-          />
-          <Autocomplete
-            multiple
-            limitTags={0}
-            defaultValue={where.selectedDiets}
-            options={diets}
-            getOptionLabel={(option) => option.name}
-            renderInput={(params) => (
-              <TextField {...params} label="diets" placeholder="diets" />
-            )}
-            onChange={(event, values) => { setWhere({ ...where, selectedDiets: values }) }}
-            sx={{ width: '350px' }}
-          />
-          <Autocomplete
-            multiple
-            limitTags={0}
-            options={types}
-            getOptionLabel={(option) => option.name}
-            value={where.selectedTypes}
-            renderInput={(params) => (
-              <TextField {...params} label="types" placeholder="types" />
-            )}
-            sx={{ width: '250px' }}
-            onChange={(event, values) => { setWhere({ ...where, selectedTypes: values }) }}
+        />
+        <Autocomplete
+          {...style}
+          value={where.selectedDiets}
+          options={diets}
+          getOptionLabel={(option) => option.name}
+          renderInput={(params) => (
+            <TextField {...params} label="diets" placeholder="diets" />
+          )}
+          onChange={(event, values) => { setWhere({ ...where, selectedDiets: values }) }}
+        />
+        <Autocomplete
+          {...style}
+          options={types}
+          getOptionLabel={(option) => option.name}
+          value={where.selectedTypes}
+          renderInput={(params) => (
+            <TextField {...params} label="types" placeholder="types" />
+          )}
+          onChange={(event, values) => { setWhere({ ...where, selectedTypes: values }) }}
 
-          />
-          <Autocomplete
-            limitTags={1}
-            options={["15", "30", "45", "60"]}
-            getOptionLabel={(option) => option}
-            value={where.maxReadyTime}
-            renderInput={(params) => (
-              <TextField {...params} label="Cook and Prep. Time" placeholder="Cook and Prep. Time" />
-            )}
-            sx={{ width: '350px' }}
-            onChange={(event, value) => { ; setWhere({ ...where, maxReadyTime: value }) }}
-          />
-        </Stack>
-        {(where.includeIngredients?.length != 0 || where.excludeIngredients?.length != 0 || where.setTypes?.length != 0 || where.selectedDiets?.length != 0) &&
-          <Divider variant="middle" sx={{ padding: 2 }} />
-        }
-        <div style={{ flexWrap: "wrap", justifyContent: "flex-start", display: "flex" }}> {where.includeIngredients?.length != 0 &&
-          <SelectedFilter name="includeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
-          {where.excludeIngredients?.length != 0 &&
-            <SelectedFilter name="excludeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
-          {where.selectedDiets?.length != 0 &&
-            <SelectedFilter name="selectedDiets" where={where} setWhere={setWhere}></SelectedFilter>}
-          {where.selectedTypes?.length != 0 &&
-            <SelectedFilter name="selectedTypes" where={where} setWhere={setWhere}></SelectedFilter>}
-        </div> </div>
+        />
+        <Autocomplete
+          limitTags={1}
+          options={maxReadyTimeOptions}
+          getOptionLabel={(option) => option.name}
+          value={where.maxReadyTime}
+          renderInput={(params) => (
+            <TextField {...params} label="Cook and Prep. Time" placeholder="Cook and Prep. Time" />
+          )}
+          sx={{ width: '350px' }}
+          onChange={(event, value) => {setWhere({ ...where, maxReadyTime:value.value})}}
+        />
+      </Stack>
+
+      {(where.includeIngredients?.length != 0 || where.excludeIngredients?.length != 0 || where.selectedTypes?.length != 0 || where.selectedDiets?.length != 0) &&
+        <Divider variant="middle" sx={{ padding: 2 }} />
+      }
+      <div style={{ flexWrap: "wrap", justifyContent: "flex-start", display: "flex" }}> {where.includeIngredients?.length != 0 &&
+        <SelectedFilter name="includeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
+        {where.excludeIngredients?.length != 0 &&
+          <SelectedFilter name="excludeIngredients" where={where} setWhere={setWhere}></SelectedFilter>}
+        {where.selectedDiets?.length != 0 &&
+          <SelectedFilter name="selectedDiets" where={where} setWhere={setWhere}></SelectedFilter>}
+        {where.selectedTypes?.length != 0 &&
+          <SelectedFilter name="selectedTypes" where={where} setWhere={setWhere}></SelectedFilter>}
+      </div>
     </Paper>
   )
 }

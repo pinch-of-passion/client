@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Pagination, Paper } from '@mui/material';
 import axios from "axios"
-import RecipesGrid from './RecipesGrid';
+import RecipesGrid from "../../components/RecipesGrid"
 import Filters from './Filters';
 import { Navigate, useLocation, useNavigate, } from 'react-router-dom';
 
@@ -52,11 +52,15 @@ const SearchRecipe = ({ src }) => {
         fetchData()
         
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, [where, page, itemsPerPage, refresh,src]);
+    }, [where, page, itemsPerPage,src]);
 
     useEffect(() => {
         setWhere({ ...where, name:queryParams.get("name")})
     }, []);
+    
+    useEffect(() => {
+        setPage(1);
+    }, [where, itemsPerPage,src]);
 
     const fetchData=async()=>{
         let url;
@@ -68,7 +72,6 @@ const SearchRecipe = ({ src }) => {
         if (src=="spoonacular"){
             setRecipes(ans.data.results)
             setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
-            // setPage(1);
         }
         else{
             setRecipes(ans.data)
