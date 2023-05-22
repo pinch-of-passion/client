@@ -21,7 +21,7 @@ const SelectedFilter = ({ name, where, setWhere }) => {
                         backgroundColor:"#f5f5f5",
                     }}
                     onDelete={() => {
-                        debugger;
+                        ;
                         where[name] = where[name].filter(tmp => item.id !== tmp.id);
                         setWhere({ ...where })
                     }} />

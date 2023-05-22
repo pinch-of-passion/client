@@ -16,7 +16,7 @@ function ShowApiRecipe() {
     const queryParams = new URLSearchParams(location.search);
 
     useEffect(() => {
-        debugger;
+        ;
         async function fetchData(recipeId) {
             const ans = await axios.get(`http://localhost:3600/api/recipe/${recipeId}`)
             if (ans.data) {
@@ -33,9 +33,13 @@ function ShowApiRecipe() {
             <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 }, }}>
                 <Typography variant='h3'>{recipe?.name}</Typography>
                 <Typography variant='h11'>{recipe?.description}</Typography>
-                <img src={`http://localhost:3600/images/${recipe.img}`} sx={{width:2}}></img>
+                <Box sx={{
+                    width: { xs: "90%", sm: "60%", md: "50%" }
+                }}>
+                    <img src={`http://localhost:3600/images/${recipe.img}`} style={{ width: "100%" }}></img>
+                </Box>
                 <Details recipe={recipe} />
-                {recipe?.ingredients?.length>0 && <DisplayIngredients ingredients={recipe?.ingredients}></DisplayIngredients>}
+                {recipe?.ingredients?.length > 0 && <DisplayIngredients ingredients={recipe?.ingredients}></DisplayIngredients>}
                 {recipe?.steps?.length > 0 && <DisplayInstruction steps={recipe?.steps}></DisplayInstruction>}
                 {recipe?.tags?.length > 0 && <DisplayTags tags={recipe?.tags}></DisplayTags>}
                 {recipe?.categories?.length > 0 && <DisplayCategories categories={recipe?.categories}></DisplayCategories>}

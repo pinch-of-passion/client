@@ -17,7 +17,7 @@ function Details({recipe}) {
         <div> {recipe?.serves} Serveings</div>
         <div>&#8214;</div>
         <TimerIcon />
-        <div>Ready in <b>{recipe?.preperingTime}</b> minutes</div>
+        <div><b>{recipe?.preperingTime}</b> minutes</div>
         <div>&#8214;</div>
         <FavoriteRoundedIcon />
         <div>{recipe?.difficult}</div>

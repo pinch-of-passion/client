@@ -32,14 +32,12 @@ function Filters({ where, setWhere }) {
   return (
     <Paper elevation={16}
       sx={{
-        marginRight: 'auto',
-        marginLeft: 'auto',
         textAlign: 'center',
         boxShadow: 1,
         borderRadius: 2,
-        backgroundColor: 'pink',
+        backgroundColor: '#e5d3d3',
         width: "90%",
-        margin: 5,
+        // margin: 5,
         padding: 2
       }}>
       <h1>filter</h1>
@@ -113,7 +111,7 @@ function Filters({ where, setWhere }) {
               <TextField {...params} label="Cook and Prep. Time" placeholder="Cook and Prep. Time" />
             )}
             sx={{ width: '350px' }}
-            onChange={(event, value) => { debugger; setWhere({ ...where, maxReadyTime: value }) }}
+            onChange={(event, value) => { ; setWhere({ ...where, maxReadyTime: value }) }}
           />
         </Stack>
         {(where.includeIngredients?.length != 0 || where.excludeIngredients?.length != 0 || where.setTypes?.length != 0 || where.selectedDiets?.length != 0) &&
@@ -128,8 +126,6 @@ function Filters({ where, setWhere }) {
           {where.selectedTypes?.length != 0 &&
             <SelectedFilter name="selectedTypes" where={where} setWhere={setWhere}></SelectedFilter>}
         </div> </div>
-      <button onClick={() => { debugger }}>debugger</button>
-
     </Paper>
   )
 }

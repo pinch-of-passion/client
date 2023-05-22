@@ -52,20 +52,22 @@ const DisplayIngredients = ({ ingredients}) => {
         <>
             <Typography variant='h4' >Ingredients:</Typography>
             <Box sx={{
-                textAlign: 'left',
-                boxShadow: 1,
-                borderRadius: 2,
-                backgroundColor:"#E5D3D3",
-                maxWidth: 1200,
-                margin: 5,
-                padding: 7
+               marginRight: 'auto',
+               marginLeft: 'auto',
+               textAlign: 'left',
+               boxShadow: 1,
+               borderRadius: 2,
+               backgroundColor: "#E5D3D3",
+               maxWidth: 1200,
+               margin: { xs: 1, sm: 5, md: 7 },
+               p: { xs: 1, sm: 5, md: 7 }
             }}>
 
                 {ingredients?.map(ingredient => (
                     <div>
                         - &nbsp;
                         <Typography component="span" align="left">{`${ingredient.qty} ${ingredient.measuringUtensilName} ${ingredient.meta}`}</Typography>
-                        <LightTooltip sx={{}}
+                        <LightTooltip
                             title={
                                 <div>
                                     <div><img src={ingredient.ingredientImg} /></div>

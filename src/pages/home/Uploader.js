@@ -8,7 +8,7 @@ const Uploader = ({file, setFile, label}) => {
   //       formData.append("file", selectFile)
   //       axios.post("http://localhost:3600/api/upload",formData).then(({data})=>{
   //          if(data?.name){
-  //           // debugger
+  //           // 
   //           setFile(data.name)
   //          }
   //       }).catch(err=>{

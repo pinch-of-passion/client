@@ -23,7 +23,7 @@ const Home = () => {
         formData.append("file", file)
         axios.post("http://localhost:3600/api/upload",formData).then(({data})=>{
            if(data?.name){
-             debugger
+             
             setPicture(`http://localhost:3600/images/${data.name}`)
            }
         }).catch(err=>{

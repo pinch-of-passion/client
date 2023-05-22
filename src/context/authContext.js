@@ -23,7 +23,7 @@ export const AuthContextProvider = ({ children }) => {
         // withCredentials:  true,
       }
     );
-    debugger
+    
     setCurrentUser(res.data.user);
     setToken(res.data.accessToken);
   };

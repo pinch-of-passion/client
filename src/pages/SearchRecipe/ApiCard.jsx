@@ -10,7 +10,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-const ApiCard = ({ recipe, setRefresh }) => {
+const ApiCard = ({ recipe, deleteRecipe }) => {
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = (event) => {
@@ -25,17 +25,11 @@ const ApiCard = ({ recipe, setRefresh }) => {
 
     const handleSubmission = (event) => {
         event.stopPropagation()
-        //deleteRecipe(recipe.id)
+        deleteRecipe(recipe.id)
         setOpen(false);
     };
 
-    const deleteRecipe = async (recipeId) => {
-        let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
-        const ans = await axios.delete(`http://localhost:3600/api/recipe/${recipeId}`)
-        debugger
-        setRefresh(true);
-        setRefresh(false);
-    }
+    
     const navigate = useNavigate();
 
     return (

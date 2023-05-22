@@ -25,8 +25,8 @@ function EditOrCreateRecipe({ action }) {
         preperingTime: null,
         serves: null,
         difficult: "easy",
-        ingredients: [{ qty: '', measuringUtensilId: null, ingredientId: null, meta: '' }],
-        steps: [{ number: 1, direction: null }],
+        ingredients: [{ qty: 1, measuringUtensilId: null, ingredientId: null, meta: '' }],
+        steps: [{ number: 1, direction: '' }],
         img: null,
         tags: [],
         categories: []
@@ -36,19 +36,13 @@ function EditOrCreateRecipe({ action }) {
     useEffect(() => {
         async function fetchData(recipeId) {
             const { data: recipeToEdit } = await axios.get(`http://localhost:3600/api/recipe/${recipeId}`)
+            
             if (recipeToEdit) {
-                debugger
-                const cleanRecipe = {
-                    name: recipeToEdit.name,
-                    description: recipeToEdit.description,
-                    preperingTime: recipeToEdit.preperingTime,
-                    serves: recipeToEdit.serves,
-                    difficult: recipeToEdit.difficult,
-                    ingredients: recipeToEdit.ingredients.map(i => ({ qty: i.qty, measuringUtensilId: i.measuringUtensilId, ingredientId: i.ingredientId, meta: i.meta })),
-                    steps: recipeToEdit.steps.map(step => ({ direction: step.direction, number: step.number })),
-                    img: recipeToEdit.img,
-                    tags: recipeToEdit.tags.map(tag => tag.id),
-                    categories: recipeToEdit.categories.map(category => category.id)
+                const cleanRecipe = {...recipeToEdit,
+                    ingredients: recipeToEdit.ingredients?.map(i => ({ qty: i.qty, measuringUtensilId: i.measuringUtensilId, ingredientId: i.ingredientId, meta: i.meta })),
+                    steps: recipeToEdit.steps?.map(step => ({ direction: step.direction, number: step.number })),
+                    tags: recipeToEdit.tags?.map(tag => tag.id),
+                    categories: recipeToEdit.categories?.map(category => category.id)
                 }
                 setRecipe(cleanRecipe);
             }
@@ -66,7 +60,7 @@ function EditOrCreateRecipe({ action }) {
             formData.append("file", recipe.img)
             const {data}=await axios.post("http://localhost:3600/api/upload",formData)
                if(data?.name){
-                debugger
+                
                  return data.name;
                 //setPicture(`http://localhost:3600/images/${data.name}`)
                }
@@ -74,42 +68,36 @@ function EditOrCreateRecipe({ action }) {
         return null;
       }
 
-    const handleAddRecipe = async (newRecipe) => {
-        //setLoading(true);
-
+    const handleAddRecipe = async () => {
         let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
-        const image=await uploadImg(newRecipe)
-        newRecipe.img=image;
-        debugger
-        const recipe = await axios.post("http://localhost:3600/api/recipe", newRecipe, config.headers);
-        debugger
-        setLoading(false)
-        alert("added")
-        navigate("/")
+        const image=await uploadImg(recipe)
+        recipe.img=image;
+        debugger    
+        const newRecipe = await axios.post("http://localhost:3600/api/recipe", recipe);
+        navigate(`/Api/show?recipeId=${newRecipe?.data?.data?.id}`)
     }
 
     const handleEditRecipe = async () => {
-        //setLoading(true);
-        debugger
+        const image=await uploadImg(recipe)
+        recipe.img=image;
         let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
-        const recipe = await axios.put(`http://localhost:3600/api/recipe/${recipe.id}`, recipe, config);
-        setLoading(false)
-        alert("added")
-        navigate("/")
+        const editedRecipe = await axios.put(`http://localhost:3600/api/recipe/${recipe.id}`, recipe);
+        alert(editedRecipe?.id)
+        navigate(`/Api/show?recipeId=${editedRecipe?.data?.id}`)
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-        debugger
+        setLoading(true);
         if (action == "create")
             handleAddRecipe(recipe)
         if (action == "edit")
-            handleEditRecipe()
+            handleEditRecipe(recipe)
     }
 
     return (
         <Box component={"form"} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <button onClick={() => { debugger }}>debbuger</button>
+            <button onClick={() => {  }}>debbuger</button>
             <Typography variant="h2" align="center" margin={3} color="danger">
                 {action == "create" ? "Create a new recipe" : "Edit your recipe"}
             </Typography>

@@ -35,7 +35,6 @@ const DisplayInstruction = ({ steps }) => {
                 p: { xs: 1, sm: 5, md: 7 }
             }}>
                 {steps?.map((section, ind) =>
-
                     <Timeline key={ind}
                         sx={{
                             [`& .${timelineItemClasses.root}:before`]: {
@@ -45,25 +44,22 @@ const DisplayInstruction = ({ steps }) => {
                         }}
                     >
                         {section.steps.map((step, index) =>
+                            <TimelineItem key={index}>
+                                <TimelineSeparator>
+                                    <TimelineConnector />
+                                    <TimelineDot>
+                                        <FastfoodIcon />
+                                    </TimelineDot>
+                                    <TimelineConnector />
+                                </TimelineSeparator>
+                                <TimelineContent sx={{ py: '12px', px: 2 }}>
+                                    <Typography variant="h6" component="span">
 
-                            <>
-                                <TimelineItem key={index}>
-                                    <TimelineSeparator>
-                                        <TimelineConnector />
-                                        <TimelineDot>
-                                            <FastfoodIcon />
-                                        </TimelineDot>
-                                        <TimelineConnector />
-                                    </TimelineSeparator>
-                                    <TimelineContent sx={{ py: '12px', px: 2 }}>
-                                        <Typography variant="h6" component="span">
-
-                                        </Typography>
-                                        <Typography>{step.step}
-                                        </Typography>
-                                    </TimelineContent>
-                                </TimelineItem>
-                            </>
+                                    </Typography>
+                                    <Typography>{step.step}
+                                    </Typography>
+                                </TimelineContent>
+                            </TimelineItem>
                         )}
                     </Timeline>
                 )

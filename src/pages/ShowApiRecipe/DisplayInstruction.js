@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
+import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
+import { Timeline } from '@material-ui/lab';
 
 const Root = styled('div')(({ theme }) => ({
     width: '100%',
@@ -24,7 +25,7 @@ const DisplayInstruction = ({ steps }) => {
             <Box sx={{
                 marginRight: 'auto',
                 marginLeft: 'auto',
-                textAlign: 'center',
+                textAlign: 'left',
                 boxShadow: 1,
                 borderRadius: 2,
                 backgroundColor: "#E5D3D3",
@@ -32,25 +33,26 @@ const DisplayInstruction = ({ steps }) => {
                 margin: { xs: 1, sm: 5, md: 7 },
                 p: { xs: 1, sm: 5, md: 7 }
             }}>
-                {steps?.sort((a, b) => b.number - a.number).map((step, index) =>
-                    <TimelineItem key={index}>
-                        <TimelineSeparator>
-                            <TimelineConnector />
-                            <TimelineDot>
-                                <FastfoodIcon />
-                            </TimelineDot>
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent sx={{ py: '12px', px: 2 }}>
-                            <Typography variant="h6" component="span">
+               
+                    {steps?.sort((a, b) => b.number - a.number).map((step, index) =>
+                        <TimelineItem key={index}>
+                            <TimelineSeparator>
+                                <TimelineConnector />
+                                <TimelineDot>
+                                    <FastfoodIcon />
+                                </TimelineDot>
+                                <TimelineConnector />
+                            </TimelineSeparator>
+                            <TimelineContent sx={{ py: '12px', px: 2 }}>
+                                <Typography variant="h6" component="span">
 
-                            </Typography>
-                            <Typography>{step.direction}
-                            </Typography>
-                        </TimelineContent>
-                    </TimelineItem>
-                )
-                }
+                                </Typography>
+                                <Typography>{step.direction}
+                                </Typography>
+                            </TimelineContent>
+                        </TimelineItem>
+                    )
+                    }
             </Box>
         </>
     )

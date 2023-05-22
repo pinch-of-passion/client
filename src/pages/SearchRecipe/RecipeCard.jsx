@@ -4,7 +4,7 @@ import ApiCard from './ApiCard';
 import SpoonacularCard from './SpoonacularCard';
 import { useNavigate } from 'react-router-dom';
 
-const RecipeCard = ({ recipe, src, setRefresh }) => {
+const RecipeCard = ({ recipe, src, deleteRecipe }) => {
     const navigate = useNavigate()
     const handelClick = () => {
         if (src == "spoonacular")
@@ -19,11 +19,11 @@ const RecipeCard = ({ recipe, src, setRefresh }) => {
         if (src == "api")
             name = recipe?.name;
         else name = recipe?.title
-        if (name.length > 65)
+        if (name?.length > 65)
             return name.substring(0, 65) + "...";
         return name;
     }
-    
+
     return (
         <Card onClick={handelClick} variant="outlined"
             sx={{
@@ -39,7 +39,7 @@ const RecipeCard = ({ recipe, src, setRefresh }) => {
                         style={{ width: 312, height: 231 }}
                     />
                 </div>
-                {src == "api" ? <ApiCard setRefresh={setRefresh} recipe={recipe} /> : <SpoonacularCard recipe={recipe} />}
+                {src == "api" ? <ApiCard deleteRecipe={deleteRecipe} recipe={recipe} /> : <SpoonacularCard recipe={recipe} />}
             </div>
             <div style={{ height: 50 }}>
                 <Typography level="h4" sx={{ fontSize: '32', mt: 2, fontWeight: '10' }}>
@@ -51,22 +51,22 @@ const RecipeCard = ({ recipe, src, setRefresh }) => {
                 variant="soft"
                 sx={{
                     display: 'flex',
-                    gap: 1.5,
+                    gap: 1,
                     py: 1.5,
                     // px: 'var(--Card-padding)',
                     bgcolor: 'background.level1',
                 }}
             >
                 <Typography level="body1" sx={{ fontWeight: '20', color: 'text.secondary' }}>
-                    &#9201; {recipe.preperingTime} minutes
+                    &#9201; {src == "api" ? <>{recipe.preperingTime}</>: <>{recipe.readyInMinutes}</>} minutes
                 </Typography>
                 <Divider orientation="vertical" />
                 <Typography level="body1" sx={{ fontWeight: '20', color: 'text.secondary' }}>
-                    &#127860; {recipe.serves} servings
+                    &#127860; {src == "api" ? <>{recipe.serves}</>: <>{recipe.servings}</>} servings
                 </Typography>
                 <Divider orientation="vertical" />
                 <Typography level="body1" sx={{ fontWeight: '20', color: 'text.secondary' }}>
-                    {src == "api" ? <span>&#128507; {recipe.difficult}</span> : <span>&#128077; {recipe.aggregateLikes} likes</span>}
+                    {src == "api" ? <>&#128507; {recipe.difficult}</> : <>&#128077; {recipe.aggregateLikes} likes</>}
                 </Typography>
             </Card>
         </Card>

@@ -3,12 +3,13 @@ import { Box, Pagination, Paper } from '@mui/material';
 import axios from "axios"
 import RecipesGrid from './RecipesGrid';
 import Filters from './Filters';
-import { useLocation, } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate, } from 'react-router-dom';
 
 
 const SearchRecipe = ({ src }) => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
+    const navigate=useNavigate();
     const [recipes, setRecipes] = useState([]);
     const [refresh, setRefresh] = useState(false);
     const [page, setPage] = useState(1);
@@ -26,7 +27,7 @@ const SearchRecipe = ({ src }) => {
 
     const generateSpoonacularUrl = () => {
         let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY3}&`
-        url += `number=${itemsPerPage}&offset=${startIndex}&`
+        url += `number=${itemsPerPage}&offset=${startIndex}&addRecipeInformation=true&`
         if (where.name)
             url += `query=${where.name}&`
         if (where.maxReadyTime)
@@ -44,39 +45,47 @@ const SearchRecipe = ({ src }) => {
 
     const generateApiUrl = () => {
         let url = `http://localhost:3600/api/recipe/`
-        // const { data: recipeToEdit } = await axios.get(`http://localhost:3600/api/recipe/${recipeId}`)
         return url;
     }
 
     useEffect(() => {
-        async function fetchData() {
-            let url;
-            if (src=="spoonacular")
-                 url = generateSpoonacularUrl()
-            else
-                 url = generateApiUrl()
-            const ans = await axios.get(url)
-            if (src=="spoonacular"){
-                setRecipes(ans.data.results)
-                setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
-                // setPage(1);
-            }
-            else{
-                setRecipes(ans.data)
-            }
-        }
         fetchData()
+        
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
     }, [where, page, itemsPerPage, refresh,src]);
 
     useEffect(() => {
         setWhere({ ...where, name:queryParams.get("name")})
     }, []);
 
+    const fetchData=async()=>{
+        let url;
+        if (src=="spoonacular")
+             url = generateSpoonacularUrl()
+        else
+             url = generateApiUrl()
+        const ans = await axios.get(url)
+        if (src=="spoonacular"){
+            setRecipes(ans.data.results)
+            setTotalPagegs(Math.ceil(ans.data.totalResults / itemsPerPage));
+            // setPage(1);
+        }
+        else{
+            setRecipes(ans.data)
+        }
+    }
+
+    const deleteRecipe = async (recipeId) => {
+        let config = { headers: { 'Authorization': 'Bearer ' + localStorage.getItem("token") } }
+        const ans = await axios.delete(`http://localhost:3600/api/recipe/${recipeId}`)
+        fetchData()
+        navigate("/Api/Search")
+    }
+
     return (
         <>
             <Filters where={where} setWhere={setWhere} />
-            <button onClick={()=>{console.log(recipes);debugger}}>debbuger</button>
-            <RecipesGrid src={src} recipes={recipes} setRefresh={setRefresh} />
+            <RecipesGrid src={src} recipes={recipes} deleteRecipe={deleteRecipe} />
             <Pagination count={totalPages} page={page} onChange={(event, page) => { setPage(page) }} />
         </>
     )

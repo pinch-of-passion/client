@@ -5,7 +5,7 @@ import { FcAddImage } from 'react-icons/fc'
 function Image({ recipe, setRecipe }) {
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
-        setRecipe({ ...recipe, img: selectedFile });
+        setRecipe({ ...recipe, img: selectedFile});
         const formData = new FormData();
         formData.append("image", selectedFile);
     };
@@ -20,7 +20,7 @@ function Image({ recipe, setRecipe }) {
             :
             <div>
                 <img
-                    src={URL.createObjectURL(recipe.img)}
+                    src={(recipe.img)}
                     alt={`Uploaded image`}
                     style={{ width: "40%" }}
                 />

@@ -29,12 +29,12 @@ function Ingridients({ recipe, setRecipe }) {
     }
 
     const handleAddIngredient = () => {
-        debugger
+        
         if (recipe.ingredients?.length>0&& !recipe.ingredients[recipe.ingredients.length - 1].ingredientId)
             setAlert("Please select an ingredient");
 
         else
-            setIngredients([...recipe.ingredients, { qty: null, measuringUtensilId: null, ingredientId: null, meta: null }]);
+            setIngredients([...recipe.ingredients, { qty: 1, measuringUtensilId: null, ingredientId: null, meta: null }]);
     };
 
     const handleRemoveIngredient = (index) => {
