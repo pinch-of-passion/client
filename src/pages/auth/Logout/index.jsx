@@ -1,62 +1,67 @@
-import { useContext, useState, React } from 'react';
-import { AuthContext } from '../../../context/authContext';
-import { useNavigate } from 'react-router-dom';
-import {DialogActions,DialogContent,DialogContentText,DialogTitle,Button,Dialog} from '@mui/material';
+import { useContext, useState, React } from "react";
+import { AuthContext } from "../../../context/authContext";
+import { useNavigate } from "react-router-dom";
+import {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+  Dialog,
+} from "@mui/material";
 
 const Logout = () => {
-
   const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
-  setOpen(true);
+    setOpen(true);
   };
 
   const handleClose = () => {
-  setOpen(false);
+    setOpen(false);
   };
 
   const handleSubmission = () => {
-  handleLogout();
-  setOpen(false);
+    handleLogout();
+    setOpen(false);
   };
 
-
   const handleLogout = async () => {
-  try {
-    await logout();
-    navigate('/');
-  } catch (error) {
-    console.log(error);
-  }
+    try {
+      await logout();
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-  <>
-    <Button onClick={handleClickOpen}>Logout</Button>
-    <Dialog
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="alert-dialog-title"
-    aria-describedby="alert-dialog-description"
-    >
-    <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
-    <DialogContent>
-      <DialogContentText id="alert-dialog-description">
-      Are you sure you want to logout?
-      </DialogContentText>
-    </DialogContent>
-    <DialogActions>
-      <Button onClick={handleClose}>Cancel</Button>
-      <Button onClick={handleSubmission} autoFocus>
-      logout
-      </Button>
-    </DialogActions>
-    </Dialog>
-  </>
+    <>
+      <Button onClick={handleClickOpen}>Logout</Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Confirmation"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to logout?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSubmission} autoFocus>
+            logout
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   );
-}
+};
 
 export default Logout;

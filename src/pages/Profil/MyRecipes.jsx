@@ -1,10 +1,8 @@
-import React from 'react'
-import SearchRecipe from '../SearchRecipe'
+import React from "react";
+import SearchRecipe from "../SearchRecipe";
 
 function MyRecipes() {
-  return (
-    <SearchRecipe src="api"/>
-  )
+  return <SearchRecipe src="api" />;
 }
 
-export default MyRecipes
+export default MyRecipes;

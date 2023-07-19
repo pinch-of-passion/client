@@ -1,25 +1,38 @@
-import * as React from 'react';
-import { Avatar, Box, Container, Link, Typography, Button, Grid, Checkbox, FormControlLabel, TextField, CssBaseline } from '@mui/material';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { AuthContext } from '../../../context/authContext';
-import { useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as React from "react";
+import {
+  Avatar,
+  Box,
+  Container,
+  Link,
+  Typography,
+  Button,
+  Grid,
+  Checkbox,
+  FormControlLabel,
+  TextField,
+  CssBaseline,
+} from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { AuthContext } from "../../../context/authContext";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      Your Website
-      {' '}
-      {new Date().getFullYear()}
-      {'.'}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      Your Website {new Date().getFullYear()}
+      {"."}
     </Typography>
   );
 }
 
-
 export default function Login() {
-
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
   const [error, setError] = useState(null);
@@ -28,12 +41,12 @@ export default function Login() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const userDetails = {
-      email: data.get('email'),
-      password: data.get('password'),
+      email: data.get("email"),
+      password: data.get("password"),
     };
     try {
       await login(userDetails);
-      navigate('/');
+      navigate("/");
     } catch (error) {
       setError(error.response.data?.message);
     }
@@ -44,12 +57,12 @@ export default function Login() {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -84,7 +97,7 @@ export default function Login() {
           >
             Sign In
           </Button>
-          {error ? error : ''}
+          {error ? error : ""}
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/register" variant="body2">

@@ -1,23 +1,20 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import LeftFixedButtons from './LeftFixedButtons';
-import Uploader from "./Uploader"
-import { Button } from '@mui/material'
-import { FcAddImage } from 'react-icons/fc'
-// import RecipesGrid from "../recipe/recipeGrid"
-import CarouselImg from './carousel'
 const Home = () => {
+  return (
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        backgroundColor: "#E5D3D3",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <video autoPlay muted width="80%" loop>
+        <source src="/home.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  );
+};
 
-    useEffect(() => {
-    }, []);
-    return (
-        <>
-            <CarouselImg></CarouselImg>
-        </>
-
-    )
-}
-
-export default Home
-
-
+export default Home;

@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { Typography } from '@mui/material';
+import React, { useState } from "react";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import { Typography } from "@mui/material";
 
 function DifficultySelector({ recipe, setRecipe }) {
-
   const handleChange = (event, difficult) => {
     if (difficult !== null) {
       setRecipe({ ...recipe, difficult });
@@ -13,7 +12,9 @@ function DifficultySelector({ recipe, setRecipe }) {
 
   return (
     <div>
-      <Typography shrink variant="h6">Difficult</Typography>
+      <Typography shrink variant="h6">
+        Difficult
+      </Typography>
       <ToggleButtonGroup
         color="primary"
         value={recipe.difficult}
