@@ -125,12 +125,20 @@ export default function Nav() {
           <MenuItem>
             <Button
               onClick={() => {
-                navigate("/Profil");
+                navigate("/myRecipes");
                 handleMobileMenuClose();
               }}
             >
               <GiCook style={{ fontSize: 25 }} />
-              {currentUser.name}
+              My Recipes
+            </Button>
+          </MenuItem>
+          <MenuItem>
+            <Button
+              onClick={() => {
+              }}
+            >
+              Hi {currentUser.name} <Logout />
             </Button>
           </MenuItem>
         </>
@@ -154,15 +162,14 @@ export default function Nav() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: "#ffffff" }}>
         <Toolbar>
-          <Typography
-            variant="h6"
-            sx={{ display: { xs: "none", sm: "block" }, color: "#ba8786" }}
+          <img
+            src="/logo.png" // Replace with the actual path to your logo image
+            alt="Logo"
+            style={{ height: "80px" }}
             onClick={() => {
               navigate("/");
             }}
-          >
-            CookWebsite
-          </Typography>
+          />
           <Search>
             <SearchIconWrapper>
               <SearchIcon
@@ -196,14 +203,6 @@ export default function Nav() {
               <>
                 <Button
                   onClick={() => {
-                    navigate("/Api/Search");
-                  }}
-                >
-                  <BsSearch style={{ fontSize: 22 }} />
-                  Search api
-                </Button>
-                <Button
-                  onClick={() => {
                     navigate("/spoonacular/Search");
                   }}
                 >
@@ -220,14 +219,14 @@ export default function Nav() {
                 </Button>
                 <Button
                   onClick={() => {
-                    navigate("/Profil");
+                    navigate("/myRecipes");
                   }}
                 >
                   <GiCook style={{ fontSize: 25 }} />
-                  {currentUser.name}
+                  My Recipes
                 </Button>
                 <Button onClick={() => {}}>
-                  <Logout />
+                  Hi {currentUser.name} <Logout />
                 </Button>
               </>
             )}
@@ -239,7 +238,6 @@ export default function Nav() {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
             >
               <MoreIcon />
             </IconButton>

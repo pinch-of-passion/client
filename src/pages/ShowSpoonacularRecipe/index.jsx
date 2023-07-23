@@ -6,7 +6,7 @@ import DisplayTags from "./DisplayTags";
 import DisplayCategories from "./DisplayCategories";
 import DisplayIngredients from "./DisplayIngredients";
 import DisplayInstruction from "./DisplayInstruction";
-import LeftButtons from "./LeftButtons";
+import LeftButtons from "../../components/LeftButtons";
 import Details from "./Details";
 import { useLocation } from "react-router-dom";
 import htmlParser from "react-html-parser";

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import EditOrCreateRecipe from "./pages/EditOrCreateRecipe";
 import Home from "./pages/home";
-import Profil from "./pages/Profil";
 import SearchRecipe from "./pages/SearchRecipe";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
@@ -12,6 +11,7 @@ import { AuthContextProvider } from "./context/authContext";
 import ShowSpoonacularRecipe from "./pages/ShowSpoonacularRecipe";
 import ShowApiRecipe from "./pages/ShowApiRecipe";
 import Footer  from "./components/footer";
+import MyRecipes from "./pages/myRecipes";
 
 const theme = createTheme({
   palette: {
@@ -37,12 +37,11 @@ function App() {
             <Nav />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/Profil" element={<Profil />} />
+              <Route path="/myRecipes" element={<MyRecipes />} />
               <Route path="/" element={<Home />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<Logout />} />
-              <Route path="/Api/Search" element={<SearchRecipe src="api" />} />
               <Route
                 path="/spoonacular/Search"
                 element={<SearchRecipe src="spoonacular" />}

@@ -27,12 +27,7 @@ function LeftButtons({ recipe }) {
         top: "330px",
       }}
     >
-      <IconButton aria-label="add an alarm" onClick={() => {}}>
-        <SimCardDownloadRoundedIcon />
-      </IconButton>
-      <IconButton onClick={() => {}}>
-        <MailRoundedIcon />
-      </IconButton>
+   
       <IconButton
         onClick={() => {
           var textField = document.createElement("textarea");

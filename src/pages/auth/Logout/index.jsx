@@ -1,6 +1,8 @@
 import { useContext, useState, React } from "react";
 import { AuthContext } from "../../../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { MdLogout } from "react-icons/md";
+
 import {
   DialogActions,
   DialogContent,
@@ -40,7 +42,10 @@ const Logout = () => {
 
   return (
     <>
-      <Button onClick={handleClickOpen}>Logout</Button>
+      <Button onClick={handleClickOpen}>
+        {" "}
+        <MdLogout style={{ fontSize: 25 }} />
+      </Button>
       <Dialog
         open={open}
         onClose={handleClose}

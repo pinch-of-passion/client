@@ -15,7 +15,7 @@ const Footer = () => {
   const theme = useTheme(); // Access the Material-UI theme
 
   const handleSendMessage = () => {
-    const toEmail = 'tova67769@gmail.com'; // Replace with the actual email address to receive messages
+    const toEmail = "tova67769@gmail.com"; // Replace with the actual email address to receive messages
     const subject = `Message from ${name}`;
     const mailtoLink = `mailto:${toEmail}?subject=${encodeURIComponent(
       subject
@@ -24,14 +24,16 @@ const Footer = () => {
   };
 
   return (
-    <footer style={{ backgroundColor: "#f5f5f5", padding: "1rem", marginTop:"50px" }}>
+    <footer
+      style={{ backgroundColor: "#f5f5f5", padding: "1rem", marginTop: "50px" }}
+    >
       <Container>
         <Box display="flex" alignItems="center" justifyContent="space-between">
           {/* Left side - Logo */}
           <img
-            src="/logo.jpg" // Replace with the actual path to your logo image
+            src="/logo.png" // Replace with the actual path to your logo image
             alt="Logo"
-            style={{width:"40%"  }}
+            style={{ width: "40%" }}
           />
 
           {/* Right side - Contact Us Form */}
@@ -41,7 +43,7 @@ const Footer = () => {
             alignItems="flex-end"
             flexGrow={1}
           >
-            <div style={{ width: "60%", backgroundColor: "0ff000" }}>
+            <div style={{ width: "80%", backgroundColor: "0ff000" }}>
               <Typography
                 variant="h6"
                 gutterBottom
