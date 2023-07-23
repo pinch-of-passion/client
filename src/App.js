@@ -11,6 +11,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { AuthContextProvider } from "./context/authContext";
 import ShowSpoonacularRecipe from "./pages/ShowSpoonacularRecipe";
 import ShowApiRecipe from "./pages/ShowApiRecipe";
+import Footer  from "./components/footer";
 
 const theme = createTheme({
   palette: {
@@ -60,6 +61,8 @@ function App() {
               />
               <Route path="/api/show" element={<ShowApiRecipe />} />
             </Routes>
+            <Footer></Footer>
+
           </ThemeProvider>
         </Router>
       </AuthContextProvider>
