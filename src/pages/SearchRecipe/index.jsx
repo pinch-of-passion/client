@@ -89,7 +89,7 @@ const SearchRecipe = ({ src }) => {
 
   return (
     <>
-      <Filters where={where} setWhere={setWhere} />
+      {src=="spoonacular" &&<Filters where={where} setWhere={setWhere} />}
       <RecipesGrid src={src} recipes={recipes} deleteRecipe={deleteRecipe} />
       <Pagination
         count={totalPages}

@@ -171,14 +171,6 @@ export default function Nav() {
             }}
           />
           <Search>
-            <SearchIconWrapper>
-              <SearchIcon
-                sx={{ color: "#ba8786" }}
-                onClick={() => {
-                  navigate("/spoonacular/Search");
-                }}
-              />
-            </SearchIconWrapper>
             <StyledInputBase
               sx={{ color: "#ba8786" }}
               placeholder="Search…"

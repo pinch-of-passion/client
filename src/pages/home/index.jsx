@@ -3,6 +3,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import FastfoodIcon from "@mui/icons-material/Fastfood";
 import { styled } from "@mui/material/styles";
+import { BsTypeH1 } from "react-icons/bs";
 
 const Root = styled("div")(({ theme }) => ({
   width: "100%",
@@ -34,11 +35,23 @@ const Home = () => {
       </div>
 
       <Typography>
-        <h1>
-          {" "}
-          Pinch of Passion: Redefining the Culinary Experience with Touchless
-          Cooking and Recipe Storage
-        </h1>
+        <div
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Typography variant="h3"
+            style={{ fontFamily: '"Handlee", cursive', color: "#ba8786" ,textAlign:"center", marginTop:"30px"}}
+          >
+            Pinch of Passion:
+            </Typography>
+          <Typography variant="h4"
+            style={{ fontFamily: '"Handlee", cursive', color: "#ba8786" ,textAlign:"center", marginTop:"30px"}}
+          >
+            Redefining the Culinary Experience with Touchless Cooking and Recipe Storage
+          </Typography>
+        </div>
         <Box
           sx={{
             marginRight: "auto",
@@ -56,7 +69,7 @@ const Home = () => {
             <FastfoodIcon />
             <Typography variant="h6" component="span">
               {" "}
-               Welcome to Pinch of Passion: A Virtual Culinary Haven
+              Welcome to Pinch of Passion: A Virtual Culinary Haven
             </Typography>
             <Typography>
               Pinch of Passion provides users with a delightful culinary haven
@@ -73,18 +86,18 @@ const Home = () => {
             <FastfoodIcon />
             <Typography variant="h6" component="span">
               {" "}
-               Touchless Cooking: A Paradigm Shift in the Kitchen
+              Touchless Cooking: A Paradigm Shift in the Kitchen
             </Typography>
             <Typography>
               One of the standout features of Pinch of Passion is its touchless
               cooking option. Through the use of advanced computer vision and
               gesture recognition technology, users can control their virtual
-              kitchen with simple hand gestures, transforming their fingers
-              into virtual mice. This groundbreaking feature allows users to
-              navigate through recipes, scroll, and access various functions on
-              the platform without ever touching a physical device. It ensures
-              a hygienic and hands-free cooking experience, perfect for those
-              who love to experiment in the kitchen without the mess or hassle.
+              kitchen with simple hand gestures, transforming their fingers into
+              virtual mice. This groundbreaking feature allows users to navigate
+              through recipes, scroll, and access various functions on the
+              platform without ever touching a physical device. It ensures a
+              hygienic and hands-free cooking experience, perfect for those who
+              love to experiment in the kitchen without the mess or hassle.
             </Typography>
           </div>
 
@@ -94,7 +107,7 @@ const Home = () => {
             <FastfoodIcon />
             <Typography variant="h6" component="span">
               {" "}
-               Your Personal Recipe Storage: A Culinary Memory Bank
+              Your Personal Recipe Storage: A Culinary Memory Bank
             </Typography>
             <Typography>
               Pinch of Passion offers users the convenience of saving and
@@ -113,15 +126,15 @@ const Home = () => {
             <FastfoodIcon />
             <Typography variant="h6" component="span">
               {" "}
-             Expanding Your Culinary Horizons: Discovering New Recipes
+              Expanding Your Culinary Horizons: Discovering New Recipes
             </Typography>
             <Typography>
               In addition to providing a safe haven for your cherished recipes,
               Pinch of Passion is a treasure trove of new culinary delights.
-              Users can explore a vast database of curated recipes, ranging
-              from traditional classics to innovative and exotic dishes. With
-              its user-friendly search and filter options, the platform ensures
-              that users can easily find recipes that cater to their dietary
+              Users can explore a vast database of curated recipes, ranging from
+              traditional classics to innovative and exotic dishes. With its
+              user-friendly search and filter options, the platform ensures that
+              users can easily find recipes that cater to their dietary
               preferences and skill levels.
             </Typography>
           </div>
@@ -132,7 +145,7 @@ const Home = () => {
             <FastfoodIcon />
             <Typography variant="h6" component="span">
               {" "}
-               Embracing Diversity: Community-Contributed Recipes
+              Embracing Diversity: Community-Contributed Recipes
             </Typography>
             <Typography>
               Pinch of Passion boasts an active and engaged community of home
@@ -150,7 +163,7 @@ const Home = () => {
             <FastfoodIcon />
             <Typography variant="h6" component="span">
               {" "}
-               Pinch of Passion Mobile App: Cooking on the Go
+              Pinch of Passion Mobile App: Cooking on the Go
             </Typography>
             <Typography>
               To further enhance the user experience, Pinch of Passion offers a
@@ -163,12 +176,12 @@ const Home = () => {
               with technology to provide a seamless and enjoyable cooking
               experience. By offering touchless cooking and an intuitive recipe
               storage system, the platform caters to the needs of today's
-              culinary enthusiasts. Pinch of Passion's dedication to fostering
-              a thriving culinary community ensures that it remains a go-to
+              culinary enthusiasts. Pinch of Passion's dedication to fostering a
+              thriving culinary community ensures that it remains a go-to
               destination for all those who seek culinary inspiration and a
-              touch of passion in their cooking endeavors. So why wait? Let
-              your fingers dance through the virtual kitchen and unlock a world
-              of culinary possibilities with Pinch of Passion.
+              touch of passion in their cooking endeavors. So why wait? Let your
+              fingers dance through the virtual kitchen and unlock a world of
+              culinary possibilities with Pinch of Passion.
             </Typography>
           </div>
         </Box>
