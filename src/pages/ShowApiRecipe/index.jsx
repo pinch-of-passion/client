@@ -40,7 +40,8 @@ function ShowApiRecipe() {
         >
           <img
             src={`http://localhost:3600/images/${recipe.img}`}
-            style={{ width: "100%" }}
+            style={{ width: "100%",            margin: "auto",
+          }}
           ></img>
         </Box>
         <Details recipe={recipe} />
