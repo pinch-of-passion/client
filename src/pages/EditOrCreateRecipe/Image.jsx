@@ -23,7 +23,8 @@ function Image({ recipe, setRecipe }) {
             onChange={handleFileChange}
           />
         </Button>
-      ) : (
+      ) :
+       (
         <div>
           <img
             src={recipe.img}

@@ -4,7 +4,6 @@ import RecipeCard from "../components/RecipeCard";
 const RecipesGrid = ({ recipes, src, deleteRecipe }) => {
   return (
     <>
-      {console.log(recipes)}
       <div
         style={{
           flexWrap: "wrap",
