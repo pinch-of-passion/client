@@ -50,6 +50,7 @@ function ShowApiRecipe() {
           </Box>
           <Details recipe={recipe} />
         </div>
+        
         {recipe?.ingredients?.length > 0 && (
           <DisplayIngredients
             ingredients={recipe?.ingredients}
