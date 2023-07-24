@@ -33,23 +33,18 @@ function ShowApiRecipe() {
       <Paper elevation={0} sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
         <Typography variant="h3">{recipe?.name}</Typography>
         <Typography variant="h11">{recipe?.description}</Typography>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <Box
-            sx={{
-              width: { xs: "90%", sm: "60%", md: "50%" },
-              margin: "auto",
-            }}
-          >
-            <img
-              src={`http://localhost:3600/images/${recipe.img}`}
-              style={{
-                width: "100%",
-              }}
-              alt={recipe.name}
-            />
-          </Box>
-          <Details recipe={recipe} />
-        </div>
+        <Box
+          sx={{
+            width: { xs: "90%", sm: "60%", md: "50%" },
+          }}
+        >
+          <img
+            src={`http://localhost:3600/images/${recipe.img}`}
+            style={{ width: "100%",            margin: "auto",
+          }}
+          ></img>
+        </Box>
+        <Details recipe={recipe} />
         
         {recipe?.ingredients?.length > 0 && (
           <DisplayIngredients
