@@ -20,6 +20,19 @@ const RecipeCard = ({ recipe, src, deleteRecipe }) => {
     return name;
   };
 
+  const getImg = (src) => {
+    if(src=="Spoonacular")
+      return recipe.image
+    else{
+      if(recipe.img)
+        return `http://localhost:3600/images/${recipe.img}`
+      return "/defultImg"
+    }
+    // ? recipe.image
+    // : recipe.img
+    // ? 
+    // : `https://spoonacular.com/recipeImages/${recipe?.id}-312x231.jpg`
+  };
   return (
     <Card
       onClick={handelClick}
@@ -37,13 +50,7 @@ const RecipeCard = ({ recipe, src, deleteRecipe }) => {
           <img
             border="none"
             outline="none"
-            src={
-              recipe.image
-                ? recipe.image
-                : recipe.img
-                ? `http://localhost:3600/images/${recipe.img}`
-                : `https://spoonacular.com/recipeImages/${recipe?.id}-312x231.jpg`
-            }
+            src={getImg(src)}
             loading="lazy"
             alt=""
             style={{ width: 312, height: 231 }}
