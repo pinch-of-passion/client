@@ -7,7 +7,20 @@ import {
   useTheme,
   Typography,
 } from "@mui/material";
-
+function Copyright(props) {
+  return (
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
+      Nechama Donnebaum & Tova Movshovitz {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 const Footer = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -96,6 +109,7 @@ const Footer = () => {
             </Button>
           </Box>
         </Box>
+        <Copyright/>
       </Container>
     </footer>
   );

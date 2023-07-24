@@ -17,20 +17,7 @@ import { AuthContext } from "../../../context/authContext";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      Your Website {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -107,7 +94,6 @@ export default function Login() {
           </Grid>
         </Box>
       </Box>
-      <Copyright sx={{ mt: 8, mb: 4 }} />
     </Container>
   );
 }
